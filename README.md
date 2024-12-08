@@ -6,4 +6,4 @@ regarding memory tasks such as memorizing a deck of cards, names and faces, digi
 ### Discord server
 
 If you would like to contribute by giving suggestions or even to help with the code, feel free to join us on our Discord
-server on this invite link: https://discord.com/invite/eenrGd2jhg
+server using this invite link: https://discord.com/invite/eenrGd2jhg
