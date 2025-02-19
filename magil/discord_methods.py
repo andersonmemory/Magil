@@ -4,7 +4,6 @@ import os
 from discord import Webhook
 import aiohttp
 
-
 load_dotenv()
 
 async def webhook_send(message, webhook_name):

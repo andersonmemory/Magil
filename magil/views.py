@@ -14,6 +14,8 @@ def training(request):
     message = "An user just entered on the Magil website!"
     webhook_name = "Magil logs"
 
+    print(os.getenv('WEBHOOK_COMMANDS'))
+
     asyncio.run(discord_methods.webhook_send(message, webhook_name))
 
 
