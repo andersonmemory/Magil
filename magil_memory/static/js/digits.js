@@ -60,8 +60,10 @@ function startMemo() {
     // TODO: set initial screen invisible
 
     initialScreenElements.forEach((textbox) => {
-        
+        textbox.classList.add("hide")
     })
+
+    
 
     // TODO: change to the memo screen
 
