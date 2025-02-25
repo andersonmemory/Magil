@@ -4,16 +4,13 @@ from django.shortcuts import render
 def home(request):
     return render(request, 'magil_memory/magil_memory.html')
 
+# TODO: /digits
 
-# TODO
-def sum(request):
-    pass
+# TODO: /cards
 
-def subtraction(request):
-    pass
+# TODO: /spoken_digits
 
-def multiplication(request):
-    pass
+# TODO: /words
 
-def division(request):
-    pass
+# TODO: /names_and_faces
+
