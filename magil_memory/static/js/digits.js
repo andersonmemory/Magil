@@ -9,7 +9,7 @@ let memoSeconds = document.querySelector("#memo_seconds")
 let recallMinutes = document.querySelector("#recall_minutes")
 let recallSeconds = document.querySelector("#recall_seconds")
 
-let initialScreenElements = [memoMinutes, memoSeconds, recallMinutes, recallSeconds]
+let initialScreen = document.getElementById("initial_screen")
 
 function generateDigits(amount) {
 
@@ -44,22 +44,6 @@ function checkValidationTimer() {
     }
 }
 
-// TODO: improve to toggle to hidden type if it's a input type text
-function toggleVisibility(arrOfScreenElements, isAClass) {
-
-    if (isAClass) {
-        arrOfScreenElements.forEach((element) => {
-            element.classList.toggle("hide")
-        })
-    } else
-    {
-        arrOfScreenElements.forEach((element) => {
-            element.type = "hidden"
-        })
-    }
-    
-}
-
 function startMemo() {
     
     generateDigits(digitsAmount.value)
@@ -74,8 +58,8 @@ function startMemo() {
     console.log(recallSeconds.value)
 
     // TODO: set initial screen invisible
-
-    toggleVisibility(initialScreenElements)
+    
+    initialScreen.classList.toggle("hide")
 
     // TODO: change to the memo screen
 
