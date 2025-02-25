@@ -59,6 +59,10 @@ function startMemo() {
 
     // TODO: set initial screen invisible
 
+    initialScreenElements.forEach((textbox) => {
+        
+    })
+
     // TODO: change to the memo screen
 
     // TODO: change to the recall screen when finished
