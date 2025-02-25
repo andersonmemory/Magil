@@ -7,14 +7,15 @@
 {% endblock %}
 
 {% block content %}
-    <script src="{% static 'js/digits.js' %}" defer></script>
+    <!-- loading contents -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="{% static 'js/digits.js' %}" defer></script>
 
-    <label for="amount">Amount of digits: </label>
-    <input type="text" name="amount" id="digits_amount">
+    <!-- amount -->
+        <label for="amount">Amount of digits: </label>
+        <input type="text" name="amount" id="digits_amount">
 
     <!-- memo time -->
-
-    
         <label for="memo_minutes">Memo time: </label>
         <input type="text" name="memo_minutes" id="memo_minutes">
         <label for="memo_minutes">minutes</label>
