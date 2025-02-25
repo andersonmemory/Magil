@@ -14,9 +14,11 @@ def home(request):
 
 def training(request):
 
-    message = "An user just entered on the Magil website!"
-    webhook_name = "Magil logs"
+    # Commented - Only works with my own server IP and not render.
 
-    asyncio.run(discord_methods.webhook_send(message, webhook_name))
+    #message = "An user just entered on the Magil website!"
+    #webhook_name = "Magil logs"
+
+    #asyncio.run(discord_methods.webhook_send(message, webhook_name))
 
     return render(request, 'training.html')
