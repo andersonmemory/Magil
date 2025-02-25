@@ -44,6 +44,12 @@ function checkValidationTimer() {
     }
 }
 
+function toggleVisibility(arrOfScreenElements) {
+    arrOfScreenElements.forEach((element) => {
+        element.toggle("hide")
+    })
+}
+
 function startMemo() {
     
     generateDigits(digitsAmount.value)
@@ -59,11 +65,7 @@ function startMemo() {
 
     // TODO: set initial screen invisible
 
-    initialScreenElements.forEach((textbox) => {
-        textbox.classList.add("hide")
-    })
-
-    
+    toggleVisibility(initialScreenElements)
 
     // TODO: change to the memo screen
 
