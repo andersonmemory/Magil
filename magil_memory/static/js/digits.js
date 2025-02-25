@@ -6,8 +6,8 @@ let digitsAmount = document.querySelector("#digits_amount")
 let memoMinutes = document.querySelector("#memo_minutes")
 let memoSeconds = document.querySelector("#memo_seconds")
 
-let recallMinutes = document.querySelector("#memo_minutes")
-let recallSeconds = document.querySelector("#memo_seconds")
+let recallMinutes = document.querySelector("#recall_minutes")
+let recallSeconds = document.querySelector("#recall_seconds")
 
 let initialScreenElements = [memoMinutes, memoSeconds, recallMinutes, recallSeconds]
 
@@ -57,7 +57,6 @@ function toggleVisibility(arrOfScreenElements, isAClass) {
             element.type = "hidden"
         })
     }
-
     
 }
 

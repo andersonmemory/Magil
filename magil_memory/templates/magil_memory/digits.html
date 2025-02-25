@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block content %}
+
+    <main id="initial_screen">
     <!-- loading contents -->
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <script src="{% static 'js/digits.js' %}" defer></script>
@@ -31,7 +33,8 @@
         <input type="text" name="recall_seconds" id="recall_seconds">
         <label for="recall_seconds">seconds</label>
 
-    <button id="start" onclick="startMemo()">Start</button>
+        <button id="start" onclick="startMemo()">Start</button>
+    </main>
 
 
 {% endblock %}
