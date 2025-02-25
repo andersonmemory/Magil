@@ -14,6 +14,7 @@ let recallSeconds = document.querySelector("#recall_seconds")
 // Screens
 
 let initialScreen = document.getElementById("initial_screen")
+let memoScreen = document.getElementById("memo_screen")
 
 function generateDigits(amount) {
 
@@ -67,7 +68,7 @@ function startMemo() {
 
     // TODO: change to the memo screen
 
-
+    memoScreen.classList.toggle("hide")
 
     // TODO: change to the recall screen when finished
     
