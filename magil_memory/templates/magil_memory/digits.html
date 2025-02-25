@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+    Digits
+{% endblock %}
+
+{% block content %}
+    <script src="{% static 'js/digits.js' %}" defer></script>
+
+    <label for="amount">Amount of digits: </label>
+    <input type="text" name="amount" id="digits_amount">
+
+    <!-- memo time -->
+
+    
+        <label for="memo_minutes">Memo time: </label>
+        <input type="text" name="memo_minutes" id="memo_minutes">
+        <label for="memo_minutes">minutes</label>
+        
+        <input type="text" name="memo_seconds" id="memo_seconds">
+        <label for="memo_seconds">seconds</label>
+
+    <!-- recall time -->
+        <label for="recall_minutes">Recall time: </label>
+        <input type="text" name="recall_minutes" id="recall_minutes">
+        <label for="recall_minutes">minutes</label>
+
+        <input type="text" name="recall_seconds" id="recall_seconds">
+        <label for="recall_seconds">seconds</label>
+
+    <button id="start" onclick="startMemo()">Start</button>
+
+
+{% endblock %}
