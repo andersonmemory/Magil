@@ -44,10 +44,21 @@ function checkValidationTimer() {
     }
 }
 
-function toggleVisibility(arrOfScreenElements) {
-    arrOfScreenElements.forEach((element) => {
-        element.classList.toggle("hide")
-    })
+// TODO: improve to toggle to hidden type if it's a input type text
+function toggleVisibility(arrOfScreenElements, isAClass) {
+
+    if (isAClass) {
+        arrOfScreenElements.forEach((element) => {
+            element.classList.toggle("hide")
+        })
+    } else
+    {
+        arrOfScreenElements.forEach((element) => {
+            element.type = "hidden"
+        })
+    }
+
+    
 }
 
 function startMemo() {
