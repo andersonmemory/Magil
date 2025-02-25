@@ -5,6 +5,8 @@ def home(request):
     return render(request, 'magil_memory/magil_memory.html')
 
 # TODO: /digits
+def digits(request):
+    return render(request, 'magil_memory/digits.html')
 
 # TODO: /cards
 
