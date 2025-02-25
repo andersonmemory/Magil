@@ -33,6 +33,18 @@ function clearList() {
     genDigitsList = []
 }
 
+function checkValidationTimer() {
+    // TODO: add more checks
+    if (parseInt(memoMinutes.value) == 0 or parseInt(memoSeconds.value) == 0)
+    {
+        alert("Please, provide a valid number")
+    }
+    if (parseInt(recallMinutes.value) == 0 or parseInt(recallSeconds.value) == 0)
+        {
+            alert("Please, provide a valid number")
+        }
+}
+
 function startMemo() {
     
     generateDigits(digitsAmount.value)
@@ -43,6 +55,7 @@ function startMemo() {
 
     // Validation handling
     // TODO: add more checks
+    checkValidationTimer()
 
     // TODO: set timers
 }
