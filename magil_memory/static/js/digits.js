@@ -46,7 +46,7 @@ function checkValidationTimer() {
 
 function toggleVisibility(arrOfScreenElements) {
     arrOfScreenElements.forEach((element) => {
-        element.toggle("hide")
+        element.classList.toggle("hide")
     })
 }
 
