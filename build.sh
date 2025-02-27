@@ -1,3 +1,2 @@
 pip install --upgrade pip
-pip install -r requirements2.txt
-kill 1
+pip install -r requirements.txt
