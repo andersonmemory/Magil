@@ -21,7 +21,7 @@ def digits(request):
 
         user_value = request.POST.get('discord_id')
 
-        webhook_send(f"Message coming from digits.html: {user_value}", os.getenv("WEBHOOK_COMMANDS"))
+        await webhook_send(f"Message coming from digits.html: {user_value}", os.getenv("WEBHOOK_COMMANDS"))
 
 
 
