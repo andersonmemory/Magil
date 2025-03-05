@@ -1,5 +1,12 @@
 from django.shortcuts import render
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+from magil.discord_methods import webhook_send
+
 # Create your views here.
 def home(request):
     return render(request, 'magil_memory/magil_memory.html')
@@ -12,7 +19,11 @@ def digits(request):
         # message:
         # @user completed one digits session!
 
-        print(request.POST.get('discord_id'))
+        user_value = request.POST.get('discord_id')
+
+        webhook_send(f"Message coming from digits.html: {user_value}", os.getenv("WEBHOOK_COMMANDS"))
+
+
 
     return render(request, 'magil_memory/digits.html')
 
