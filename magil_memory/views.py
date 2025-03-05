@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 from dotenv import load_dotenv
 import os
+import asyncio
+
 
 load_dotenv()
 
@@ -21,8 +23,7 @@ def digits(request):
 
         user_value = request.POST.get('discord_id')
 
-        await webhook_send(f"Message coming from digits.html: {user_value}", os.getenv("WEBHOOK_COMMANDS"))
-
+        asyncio.run(webhook_send(f"Message coming from digits.html: {user_value}", os.getenv("WEBHOOK_COMMANDS")))
 
 
     return render(request, 'magil_memory/digits.html')
