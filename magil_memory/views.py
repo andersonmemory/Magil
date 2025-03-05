@@ -6,6 +6,14 @@ def home(request):
 
 # TODO: /digits
 def digits(request):
+
+    if request.method == "POST":
+        # TODO: call discord API to ping user 
+        # message:
+        # @user completed one digits session!
+
+        print(request.POST.get('discord_id'))
+
     return render(request, 'magil_memory/digits.html')
 
 # TODO: /cards

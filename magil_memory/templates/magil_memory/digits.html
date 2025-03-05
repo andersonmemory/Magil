@@ -40,4 +40,12 @@
         <p>Hello, world</p>
     </div>
 
+    <form action="/memory/digits/" method="post">
+        {% csrf_token %}
+        <label for="discord_id">Your Discord id</label>
+        <input type="text" name="discord_id">
+        <button></button>
+    </form>
+
+
 {% endblock %}
