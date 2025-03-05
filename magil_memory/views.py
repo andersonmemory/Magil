@@ -24,7 +24,7 @@ def digits(request):
         user_value = request.POST.get('discord_id')
         webhook_name = "digits discipline"
 
-        asyncio.run(webhook_send(f"Message coming from digits.html: {user_value}", webhook_name)
+        asyncio.run(webhook_send(f"Message coming from digits.html: {user_value}", webhook_name))
 
 
     return render(request, 'magil_memory/digits.html')
