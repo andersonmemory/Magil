@@ -115,7 +115,7 @@ function finishRecall() {
     discordSubmitScreen.classList.toggle("hide")
 }
 
-function startMemo() {
+function main() {
     
     generateDigits(digitsAmount.value)
 
@@ -136,7 +136,5 @@ function startMemo() {
     } else if (recallTotalTime <= 0 && recallScreen.is(":visible")) {
         finishRecall()
     }
-
-
     
 }
