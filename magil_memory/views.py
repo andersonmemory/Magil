@@ -17,14 +17,15 @@ def home(request):
 def digits(request):
 
     if request.method == "POST":
-        # TODO: call discord API to ping user 
-        # message:
-        # @user completed one digits session!
 
         user_value = request.POST.get('discord_id')
         webhook_name = "digits discipline"
 
-        asyncio.run(webhook_send(f"Message coming from digits.html: {user_value}", webhook_name))
+        memo_elapsed = request.POST.get('memo_elapsed')
+        recall_elapsed = request.POST.get('recall_elapsed')
+        digits_amount = request.POST.get('digits_amount')
+
+        asyncio.run(webhook_send(f"<@{user_value}> memorizou {digits_amount} dígitos em {memo_elapsed}, com {recall_elapsed} de recall!", webhook_name))
 
 
     return render(request, 'magil_memory/digits.html')

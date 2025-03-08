@@ -83,6 +83,8 @@ function memoCounter() {
     memoTotalTime-- 
     memoElapsedTime++
 
+    console.log(memoElapsedTime)
+
     if (sec >= 10) {
         memoTime.innerHTML = `${min}:${sec}`
     } else {
@@ -112,9 +114,6 @@ function recallCounter() {
     } else {
         recallTime.innerHTML = `${min}:0${sec}`
     }
-
-    console.log(memoTotalTime)
-    console.log(!memoScreenVisible)
 }
 
 // TODO: add more info
@@ -138,6 +137,41 @@ function finishRecall() {
     discordSubmitScreen.classList.toggle("hide")
 
     clearInterval(recallStart)
+
+    // Preparing to send to Discord
+
+    let memoDjangoElapsed = document.getElementById("memoElapsedTime")
+    let recallDjangoElapsed = document.getElementById("recallElapsedTime")
+    let digitsDjangoAmount = document.getElementById("digitsAmount")
+
+    // Text formattings
+
+    console.log(memoElapsedTime)
+    console.log(memoElapsedTime / 60)
+
+    let memoMin = Math.floor(memoElapsedTime / 60)
+
+    console.log(memoMin)
+
+    let memoSec = memoElapsedTime % 60
+
+    let recallMin = Math.floor(recallElapsedTime / 60)
+    let recallSec = recallElapsedTime % 60
+
+    if (memoSec >= 10) {
+        memoDjangoElapsed.value = `${memoMin}m${memoSec}s`
+    } else {
+        memoDjangoElapsed.value = `${memoMin}:0${memoSec}`
+    }
+
+    if (recallSec >= 10) {
+        recallDjangoElapsed.value = `${recallMin}m${recallSec}s`        
+    } else {
+        recallDjangoElapsed.value = `${recallMin}m0${recallSec}s`
+    }
+
+    digitsDjangoAmount.value = digitsAmount.value
+
 }
 
 let memoStart

@@ -59,7 +59,13 @@
             {% csrf_token %}
             <label for="discord_id">Your Discord id</label>
             <input type="text" name="discord_id">
-            <button></button>
+
+            <!-- hidden variables to pass to Django server -->
+                <input type="hidden" name="memo_elapsed" id="memoElapsedTime">
+                <input type="hidden" name="recall_elapsed" id="recallElapsedTime">
+                <input type="hidden" name="digits_amount" id="digitsAmount">
+
+            <button type=submit></button>
         </form>
     </div> 
 
