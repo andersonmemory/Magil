@@ -109,7 +109,7 @@ function recallCounter() {
     }
 
     let sec = (recallTotalTime) % 60
-    let min = (parseInt(recallTotalTime)) / 60
+    let min = Math.floor(recallTotalTime / 60)
 
     recallTotalTime--
     recallElapsedTime++
@@ -119,13 +119,28 @@ function recallCounter() {
     } else {
         recallTime.innerHTML = `${min}:0${sec}`
     }
+
+    console.log(memoTotalTime)
+    console.log(!memoScreenVisible)
 }
 
+
+
+
 // TODO: add more info
+
+let recallStart
+
+
 function finishMemo() {
+    memoScreenVisible = !memoScreenVisible
     recallScreenVisible = !recallScreenVisible
     memoScreen.classList.toggle("hide")
     recallScreen.classList.toggle("hide")
+
+    clearInterval(memoStart)
+
+    recallStart = setInterval(recallCounter, 1000)
 }
 
 
@@ -134,8 +149,11 @@ function finishRecall() {
     memoScreenVisible = !memoScreenVisible
     recallScreen.classList.toggle("hide")
     discordSubmitScreen.classList.toggle("hide")
+
+    clearInterval(recallStart)
 }
 
+let memoStart
 
 function main() {
     
@@ -154,9 +172,5 @@ function main() {
     recallTotalTime = parseInt(recallMinutes.value) * 60 + parseInt(recallSeconds.value)
     
     memoStart = setInterval(memoCounter, 1000)
-
-    if (!memoScreenVisible) {
-        clearInterval(memoStart)
-    }
 
 }
