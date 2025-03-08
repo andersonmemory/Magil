@@ -44,6 +44,7 @@ function generateDigits(amount) {
 
     for(let i = 0; i < amount; i++) {
         let random_number = Math.floor((Math.random() * 10))
+        numberSequence.innerHTML += random_number
         genDigitsList.push(random_number)
     }
 }
@@ -138,21 +139,38 @@ function finishRecall() {
 
     clearInterval(recallStart)
 
+    // Check errors
+
+    let userInput = recallBox.value
+
+    let failure = 0
+    let score = 0
+
+    for (let i = 0; i < digitsAmount.value; i++) {
+        if (userInput[i] == genDigitsList[i]) {
+            score++
+        } else {
+            failure++
+        }
+    }
+
+    
+
     // Preparing to send to Discord
 
     let memoDjangoElapsed = document.getElementById("memoElapsedTime")
     let recallDjangoElapsed = document.getElementById("recallElapsedTime")
     let digitsDjangoAmount = document.getElementById("digitsAmount")
+    let scoreDjango = document.getElementById("userScore")
+    let failureDjango = document.getElementById("userFailure")
+
+    scoreDjango.value = score
+    failureDjango.value = failure
 
     // Text formattings
-
-    console.log(memoElapsedTime)
-    console.log(memoElapsedTime / 60)
+    digitsDjangoAmount.value = digitsAmount.value
 
     let memoMin = Math.floor(memoElapsedTime / 60)
-
-    console.log(memoMin)
-
     let memoSec = memoElapsedTime % 60
 
     let recallMin = Math.floor(recallElapsedTime / 60)
@@ -161,7 +179,7 @@ function finishRecall() {
     if (memoSec >= 10) {
         memoDjangoElapsed.value = `${memoMin}m${memoSec}s`
     } else {
-        memoDjangoElapsed.value = `${memoMin}:0${memoSec}`
+        memoDjangoElapsed.value = `${memoMin}m0${memoSec}s`
     }
 
     if (recallSec >= 10) {
@@ -169,9 +187,6 @@ function finishRecall() {
     } else {
         recallDjangoElapsed.value = `${recallMin}m0${recallSec}s`
     }
-
-    digitsDjangoAmount.value = digitsAmount.value
-
 }
 
 let memoStart
