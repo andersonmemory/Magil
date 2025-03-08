@@ -1,5 +1,11 @@
 let genDigitsList = []
 
+// Conditionals
+
+let memoScreenVisible = false
+let recallScreenVisible = false
+
+
 // Input boxes -- Main screen
 
 let digitsAmount = document.querySelector("#digits_amount")
@@ -16,15 +22,17 @@ let recallSeconds = document.querySelector("#recall_seconds")
 let initialScreen = document.getElementById("initial_screen")
 let memoScreen = document.getElementById("memo_screen")
 let recallScreen = document.getElementById("recall_screen")
-let discordSubmitScreen = document.getAnimations("discord_submit_screen")
+let discordSubmitScreen = document.getElementById("discord_submit_screen")
 
 // memoScreen   - elements
 
+let memoTotalTime
 let memoTime = document.getElementById("memo_time")
 let numberSequence = document.getElementById("number_sequence")
 
 // recallScreen - elements
 
+let recallTotalTime
 let recallTime = document.getElementById("recall_time")
 let recallBox = document.getElementById("recall_box")
 
@@ -63,9 +71,11 @@ function checkValidationTimer() {
 
 // Counter for the memoScreen
 
-let memoTotalTime = parseInt(memoMinutes) * 60 + parseInt(memoSeconds)
+let memoElapsedTime = 0
 
-function memoCounter(minutes, seconds) {
+console.log(memoTotalTime)
+
+function memoCounter() {
 
     if (memoTotalTime <= 0) {
         finishMemo()
@@ -73,37 +83,47 @@ function memoCounter(minutes, seconds) {
         return "finishedMemo"
     }
 
-    sec = memoTotalTime % 60
-    min = Math.floor(memoTotalTime / 60)
+    let sec = memoTotalTime % 60
+    let min = Math.floor(memoTotalTime / 60)
 
     memoTotalTime-- 
+    memoElapsedTime++
 
-    memoTime = String(memoMinutes) + ":" + String(memoSeconds)
-    
+    if (sec >= 10) {
+        memoTime.innerHTML = `${min}:${sec}`
+    } else {
+        memoTime.innerHTML = `${min}:0${sec}`
+    }
+
 }
 
 // Counter for the recallScreen
 
-let recallTotalTime = parseInt(recallMinutes) * 60 + parseInt(recallSeconds)
+let recallElapsedTime = 0
 
-function recallCounter(minutes, seconds) {
+function recallCounter() {
     if (recallTotalTime <= 0) {
         finishRecall()
         console.log("Finished Recall")
         return "finishedRecall"
     }
 
-    sec = recallTotalTime % 60
-    min = Math.floor(recallTotalTime / 60)
+    let sec = (recallTotalTime) % 60
+    let min = (parseInt(recallTotalTime)) / 60
 
     recallTotalTime--
+    recallElapsedTime++
 
-    memoTime = String(memoMinutes) + ":" + String(memoSeconds)
-    memoTime
+    if (sec >= 10) {
+        recallTime.innerHTML = `${min}:${sec}`
+    } else {
+        recallTime.innerHTML = `${min}:0${sec}`
+    }
 }
 
 // TODO: add more info
 function finishMemo() {
+    recallScreenVisible = !recallScreenVisible
     memoScreen.classList.toggle("hide")
     recallScreen.classList.toggle("hide")
 }
@@ -111,9 +131,11 @@ function finishMemo() {
 
 // TODO: add more info
 function finishRecall() {
+    memoScreenVisible = !memoScreenVisible
     recallScreen.classList.toggle("hide")
     discordSubmitScreen.classList.toggle("hide")
 }
+
 
 function main() {
     
@@ -122,19 +144,19 @@ function main() {
     // TODO: add more checks
     checkValidationTimer()
 
+    // Initialization
+
     initialScreen.classList.toggle("hide")
     memoScreen.classList.toggle("hide")
+    memoScreenVisible = true
 
-    if (!memoTotalTime <= 0 && memoScreen.is(":visible")) {
-        setInterval(memoCounter, 1000)
-    } else if (memoTotalTime <= 0 && memoScreen.is(":visible")) {
-        finishMemo()
-    }
-
-    if (!recallTotalTime <= 0 && recallScreen.is(":visible")) {
-        setInterval(recallCounter, 1000)
-    } else if (recallTotalTime <= 0 && recallScreen.is(":visible")) {
-        finishRecall()
-    }
+    memoTotalTime = parseInt(memoMinutes.value) * 60 + parseInt(memoSeconds.value)
+    recallTotalTime = parseInt(recallMinutes.value) * 60 + parseInt(recallSeconds.value)
     
+    memoStart = setInterval(memoCounter, 1000)
+
+    if (!memoScreenVisible) {
+        clearInterval(memoStart)
+    }
+
 }
