@@ -1,13 +1,11 @@
 let genDigitsList = []
 
 // Conditionals
-
 let memoScreenVisible = false
 let recallScreenVisible = false
 
 
 // Input boxes -- Main screen
-
 let digitsAmount = document.querySelector("#digits_amount")
 
 let memoMinutes = document.querySelector("#memo_minutes")
@@ -18,20 +16,17 @@ let recallSeconds = document.querySelector("#recall_seconds")
 
 
 // Screens
-
 let initialScreen = document.getElementById("initial_screen")
 let memoScreen = document.getElementById("memo_screen")
 let recallScreen = document.getElementById("recall_screen")
 let discordSubmitScreen = document.getElementById("discord_submit_screen")
 
 // memoScreen   - elements
-
 let memoTotalTime
 let memoTime = document.getElementById("memo_time")
 let numberSequence = document.getElementById("number_sequence")
 
 // recallScreen - elements
-
 let recallTotalTime
 let recallTime = document.getElementById("recall_time")
 let recallBox = document.getElementById("recall_box")
@@ -70,7 +65,6 @@ function checkValidationTimer() {
 }
 
 // Counter for the memoScreen
-
 let memoElapsedTime = 0
 
 console.log(memoTotalTime)
@@ -98,7 +92,6 @@ function memoCounter() {
 }
 
 // Counter for the recallScreen
-
 let recallElapsedTime = 0
 
 function recallCounter() {
@@ -124,13 +117,8 @@ function recallCounter() {
     console.log(!memoScreenVisible)
 }
 
-
-
-
 // TODO: add more info
-
 let recallStart
-
 
 function finishMemo() {
     memoScreenVisible = !memoScreenVisible
