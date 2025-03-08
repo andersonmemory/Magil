@@ -131,7 +131,6 @@ function finishMemo() {
     recallStart = setInterval(recallCounter, 1000)
 }
 
-
 // TODO: add more info
 function finishRecall() {
     memoScreenVisible = !memoScreenVisible
