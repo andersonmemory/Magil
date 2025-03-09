@@ -25,9 +25,12 @@ def digits(request):
         recall_elapsed = request.POST.get('recall_elapsed')
         digits_amount = request.POST.get('digits_amount')
         user_score = request.POST.get("user_score")
-        # user_failure = request.POST.get("user_score")
+        user_failure = request.POST.get("user_score")
 
-        asyncio.run(webhook_send(f"<@{user_value}> memorizou {user_score} de {digits_amount} dígitos em {memo_elapsed}, com {recall_elapsed} de recall!", webhook_name))
+        if user_failure = 0:
+            asyncio.run(webhook_send(f"<@{user_value}> memorizou {user_score} dígitos sem nenhum erro em {memo_elapsed}, com {recall_elapsed} de recall!", webhook_name))
+        else:
+            asyncio.run(webhook_send(f"<@{user_value}> memorizou {user_score} de {digits_amount} dígitos em {memo_elapsed}, com {recall_elapsed} de recall!", webhook_name))
 
     return render(request, 'magil_memory/digits.html')
 
