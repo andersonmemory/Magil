@@ -68,8 +68,6 @@ function checkValidationTimer() {
 // Counter for the memoScreen
 let memoElapsedTime = 0
 
-console.log(memoTotalTime)
-
 function memoCounter() {
 
     if (memoTotalTime <= 0) {
@@ -84,7 +82,7 @@ function memoCounter() {
     memoTotalTime-- 
     memoElapsedTime++
 
-    console.log(memoElapsedTime)
+    // console.log(memoElapsedTime)
 
     if (sec >= 10) {
         memoTime.innerHTML = `${min}:${sec}`
