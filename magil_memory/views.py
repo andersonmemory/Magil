@@ -20,7 +20,7 @@ def digits(request):
     if request.method == "POST":
 
         user_value = request.POST.get('discord_id')
-        webhook_name = "digits discipline"
+        webhook_name = "Disciplina de dígitos"
 
         memo_elapsed = request.POST.get('memo_elapsed')
         recall_elapsed = request.POST.get('recall_elapsed')
