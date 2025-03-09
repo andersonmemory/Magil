@@ -27,7 +27,7 @@ def digits(request):
         user_score = request.POST.get("user_score")
         user_failure = request.POST.get("user_score")
 
-        if user_failure = 0:
+        if user_failure == 0:
             asyncio.run(webhook_send(f"<@{user_value}> memorizou {user_score} dígitos sem nenhum erro em {memo_elapsed}, com {recall_elapsed} de recall!", webhook_name))
         else:
             asyncio.run(webhook_send(f"<@{user_value}> memorizou {user_score} de {digits_amount} dígitos em {memo_elapsed}, com {recall_elapsed} de recall!", webhook_name))
