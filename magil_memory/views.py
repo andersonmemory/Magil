@@ -7,8 +7,7 @@ import asyncio
 
 load_dotenv()
 
-from magil.discord_methods import webhook_send
-from magil.discord_methods import webhook_training_logs_send
+from magil.discord_methods import webhook_send, webhook_training_logs_send
 
 # Create your views here.
 def home(request):
@@ -26,9 +25,9 @@ def digits(request):
         recall_elapsed = request.POST.get('recall_elapsed')
         digits_amount = request.POST.get('digits_amount')
         user_score = request.POST.get("user_score")
-        user_failure = request.POST.get("user_score")
+        user_failure = request.POST.get("user_failure")
 
-        if user_failure == 0:
+        if user_failure == '0':
             asyncio.run(webhook_training_logs_send(f"<@{user_value}> memorizou {user_score} dígitos sem nenhum erro em {memo_elapsed}, com {recall_elapsed} de recall!", webhook_name))
         else:
             asyncio.run(webhook_training_logs_send(f"<@{user_value}> memorizou {user_score} de {digits_amount} dígitos em {memo_elapsed}, com {recall_elapsed} de recall!", webhook_name))
