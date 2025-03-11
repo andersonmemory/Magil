@@ -193,8 +193,13 @@ let memoStart
 
 function main() {
     
+    // Temporary test
+
+    let cardList = [ clubsA ]
+
+
     // TODO: write generateCards
-    
+
     // generateCards(cardsAmount.value)
 
     // TODO: add more checks
