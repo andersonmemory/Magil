@@ -1,5 +1,9 @@
 let genCardsList = []
 
+// Places to place the cards - Temporary
+let place = document.getElementById("place")
+
+
 // Conditionals
 let memoScreenVisible = false
 let recallScreenVisible = false
@@ -196,6 +200,8 @@ function main() {
     // Temporary test
 
     let cardList = [ clubsA ]
+
+
 
 
     // TODO: write generateCards
