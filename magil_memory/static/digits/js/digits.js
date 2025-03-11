@@ -38,8 +38,10 @@ function generateDigits(amount) {
     // TODO validation checking for more cases instead of just 0
     if (parseInt(amount) == 0) {
         alert("Please provide a valid range")
-    } elseif (parseInt(amount) > 9999) {
+        return
+    } else if (parseInt(amount) > 9999) {
         alert("Only values between 1 and 9999 are allowed")
+        return
     }
 
     amount = parseInt(amount)
@@ -53,18 +55,6 @@ function generateDigits(amount) {
 
 function clearList() {
     genDigitsList = []
-}
-
-function checkValidationTimer() {
-    // TODO: add more checks
-    if (parseInt(memoMinutes.value) == 0 || parseInt(memoSeconds.value) == 0) {
-        alert("Please, provide a valid number")
-        return
-    }
-    if (parseInt(recallMinutes.value) == 0 || parseInt(recallSeconds.value) == 0) {
-        alert("Please, provide a valid number")
-         return
-    }
 }
 
 // Counter for the memoScreen
