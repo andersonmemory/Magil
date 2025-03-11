@@ -35,8 +35,8 @@ function memoCounter() {
 
 }
 
-
 // TODO: add more info
+// Transition between memoScreen to recallScreen
 let recallStart
 
 function finishMemo() {
