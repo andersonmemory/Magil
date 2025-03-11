@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+    Digits
+{% endblock %}
+
+{% block content %}
+
+    <main id="initial_screen">
+    <!-- loading contents -->
+        <link rel="stylesheet" href="{% static 'digits/css/style.css' %}">
+        <script src="{% static 'digits/js/digits.js' %}" defer></script>
+
+    <!-- amount -->
+        <label for="amount">Amount of digits: </label>
+        <input type="text" name="amount" id="digits_amount">
+
+        <br>
+
+    <!-- memo time -->
+        <label for="memo_minutes">Memo time: </label>
+        <input type="text" name="memo_minutes" id="memo_minutes">
+        <label for="memo_minutes">minutes</label>
+        
+        <input type="text" name="memo_seconds" id="memo_seconds">
+        <label for="memo_seconds">seconds</label>
+
+        <br>
+
+    <!-- recall time -->
+        <label for="recall_minutes">Recall time: </label>
+        <input type="text" name="recall_minutes" id="recall_minutes">
+        <label for="recall_minutes">minutes</label>
+
+        <input type="text" name="recall_seconds" id="recall_seconds">
+        <label for="recall_seconds">seconds</label>
+
+        <br>
+
+        <button id="start" onclick="main()">Start</button>
+
+    </main>
+
+    <!-- memo screen -->
+    
+    <div id="memo_screen" class="hide">
+        <p id="memo_time"></p>
+        <p id="number_sequence"></p>
+        <button onclick="finishMemo()">Finish</button>
+    </div>
+
+    <!-- recall screen -->
+
+    <div id="recall_screen" class="hide">
+        <p id="recall_time"></p>
+        <input type="text" id="recall_box">
+        <button onclick="finishRecall()">Finish</button>
+    </div>
+
+    <!-- discord submit screen -->
+
+    <div id="discord_submit_screen" class="hide">
+        <form action="/memory/digits/" method="post">
+            {% csrf_token %}
+            <label for="discord_id">Your Discord id</label>
+            <input type="text" name="discord_id" placeholder="ex: 123456789012345678">
+
+            <!-- hidden variables to pass to Django server -->
+                <input type="hidden" name="memo_elapsed" id="memoElapsedTime">
+                <input type="hidden" name="recall_elapsed" id="recallElapsedTime">
+                <input type="hidden" name="digits_amount" id="cardsAmount">
+                <input type="hidden" name="user_score" id="userScore">
+                <input type="hidden" name="user_failure" id="userFailure">
+
+            <button type=submit>Send</button>
+        </form>
+    </div> 
+
+{% endblock %}
