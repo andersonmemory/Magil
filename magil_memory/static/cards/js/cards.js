@@ -31,7 +31,7 @@ let recallTotalTime
 let recallTime = document.getElementById("recall_time")
 let recallBox = document.getElementById("recall_box")
 
-function generateDigits(amount) {
+function generateCards(amount) {
 
     clearList()
 
@@ -41,12 +41,14 @@ function generateDigits(amount) {
     }
 
     amount = parseInt(amount)
+    
+    // TODO generate a list with randomized itens added
 
-    for(let i = 0; i < amount; i++) {
-        let random_number = Math.floor((Math.random() * 10))
-        numberSequence.innerHTML += random_number
-        genCardsList.push(random_number)
-    }
+    // for(let i = 0; i < amount; i++) {
+    //     let random_number = Math.floor((Math.random() * 10))
+    //     numberSequence.innerHTML += random_number
+    //     genCardsList.push(random_number)
+    // }
 }
 
 function clearList() {
@@ -158,7 +160,7 @@ function finishRecall() {
 
     let memoDjangoElapsed = document.getElementById("memoElapsedTime")
     let recallDjangoElapsed = document.getElementById("recallElapsedTime")
-    let digitsDjangoAmount = document.getElementById("cardsAmount")
+    let cardsDjangoAmount = document.getElementById("cardsAmount")
     let scoreDjango = document.getElementById("userScore")
     let failureDjango = document.getElementById("userFailure")
 
@@ -166,7 +168,7 @@ function finishRecall() {
     failureDjango.value = failure
 
     // Text formattings
-    digitsDjangoAmount.value = cardsAmount.value
+    cardsDjangoAmount.value = cardsAmount.value
 
     let memoMin = Math.floor(memoElapsedTime / 60)
     let memoSec = memoElapsedTime % 60
@@ -191,20 +193,22 @@ let memoStart
 
 function main() {
     
-    generateDigits(cardsAmount.value)
+    // TODO: write generateCards
+    
+    // generateCards(cardsAmount.value)
 
     // TODO: add more checks
-    checkValidationTimer()
+    // checkValidationTimer()
 
     // Initialization
 
-    initialScreen.classList.toggle("hide")
-    memoScreen.classList.toggle("hide")
-    memoScreenVisible = true
+    // initialScreen.classList.toggle("hide")
+    // memoScreen.classList.toggle("hide")
+    // memoScreenVisible = true
 
-    memoTotalTime = parseInt(memoMinutes.value) * 60 + parseInt(memoSeconds.value)
-    recallTotalTime = parseInt(recallMinutes.value) * 60 + parseInt(recallSeconds.value)
+    // memoTotalTime = parseInt(memoMinutes.value) * 60 + parseInt(memoSeconds.value)
+    // recallTotalTime = parseInt(recallMinutes.value) * 60 + parseInt(recallSeconds.value)
     
-    memoStart = setInterval(memoCounter, 1000)
+    // memoStart = setInterval(memoCounter, 1000)
 
 }

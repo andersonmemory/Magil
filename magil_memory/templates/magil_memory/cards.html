@@ -10,12 +10,23 @@
 
     <main id="initial_screen">
     <!-- loading contents -->
-        <link rel="stylesheet" href="{% static 'digits/css/style.css' %}">
-        <script src="{% static 'digits/js/digits.js' %}" defer></script>
+        <link rel="stylesheet" href="{% static 'cards/css/style.css' %}">
+        <script src="{% static 'cards/js/cards.js' %}" defer></script>
 
     <!-- amount -->
-        <label for="amount">Amount of digits: </label>
-        <input type="text" name="amount" id="digits_amount">
+        <label for="amount">Amount of cards: </label>
+        <input type="text" name="amount" id="cards_amount">
+
+    <!-- group by -->
+        <label for="group">Group cards By</label>
+        <select name="group" id="grou_by_cards">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
 
         <br>
 
@@ -38,6 +49,8 @@
         <label for="recall_seconds">seconds</label>
 
         <br>
+
+        
 
         <button id="start" onclick="main()">Start</button>
 
