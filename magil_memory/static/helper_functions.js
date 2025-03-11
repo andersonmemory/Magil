@@ -23,6 +23,10 @@ let memoScreen = document.getElementById("memo_screen")
 let recallScreen = document.getElementById("recall_screen")
 let discordSubmitScreen = document.getElementById("discord_submit_screen")
 
+// More elements
+let memoTime = document.getElementById("memo_time")
+let recallTime = document.getElementById("recall_time")
+
 // Used both in cards.js and digits.js
 function checkValidationTimer() {
 
