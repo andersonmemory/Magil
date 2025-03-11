@@ -1,4 +1,11 @@
-// let genCardsList = []
+const deckOfCards = [
+    clubsA, clubs2, clubs3, clubs4, clubs5, clubs6, clubs7, clubs8, clubs9, clubs10, clubsJ, clubsQ, clubsK,
+    spadesA, spades2, spades3, spades4, spades5, spades6, spades7, spades8, spades9, spades10, spadesJ, spadesQ, spadesK,
+    heartsA, hearts2, hearts3, hearts4, hearts5, hearts6, hearts7, hearts8, hearts9, hearts10, heartsJ, heartsQ, heartsK,
+    diamondsA, diamonds2, diamonds3, diamonds4, diamonds5, diamonds6, diamonds7, diamonds8, diamonds9, diamonds10, diamondsJ, diamondsQ, diamondsK,
+]
+
+let genCardsList = []
 
 // // Conditionals
 // let memoScreenVisible = false
@@ -31,25 +38,37 @@
 // let recallTime = document.getElementById("recall_time")
 // let recallBox = document.getElementById("recall_box")
 
-// function generateCards(amount) {
+function generateCards(amount) {
 
-//     clearList()
+    clearList()
 
-//     // TODO validation checking for more cases instead of just 0
-//     if (parseInt(amount) == 0) {
-//         alert("Please provide a valid range")
-//     }
+    // TODO validation checking for more cases instead of just 0
+    if (parseInt(amount) == 0) {
+        alert("Please provide a valid range")
+    }
 
-//     amount = parseInt(amount)
-    
-//     // TODO generate a list with randomized itens added
+    amount = parseInt(amount)
 
-//     // for(let i = 0; i < amount; i++) {
-//     //     let random_number = Math.floor((Math.random() * 10))
-//     //     numberSequence.innerHTML += random_number
-//     //     genCardsList.push(random_number)
-//     // }
-// }
+    let randomizedDeck = deckOfCards
+
+    shuffleArray(randomizedDeck)
+
+    let newList
+
+    for (let i = 0, j = 0; i < amount; i++) {
+
+        if (j > 51) {
+            j = 0
+            shuffleArray(randomizedDeck)
+        }
+
+        newList.append(randomizedDeck[j])
+
+        j++
+    }
+
+    genCardsList = newList
+}
 
 // function clearList() {
 //     genCardsList = []
@@ -187,6 +206,13 @@
 //     }
 // }
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i >= 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 // let memoStart
 
 function main() {
@@ -197,7 +223,9 @@ function main() {
 
     // TODO: write generateCards
 
-    // generateCards(cardsAmount.value)
+    generateCards(cardsAmount.value)
+
+    console.log(generateCards)
 
     // TODO: add more checks
     // checkValidationTimer()
@@ -216,8 +244,16 @@ function main() {
 }
 
 // Places to place the cards - Temporary
-let place = document.getElementById("place")
 
-place.innerHTML = clubsA
 
-console.log("hello, world")
+// let tiny_list = [ clubsA, diamonds2, hearts4, spades6 ]
+
+// shuffleArray(tiny_list)
+
+
+// let place = document.getElementById("place")
+
+
+// place.innerHTML = tiny_list
+
+// console.log("hello, world")
