@@ -35,6 +35,21 @@ function memoCounter() {
 
 }
 
+
+// TODO: add more info
+let recallStart
+
+function finishMemo() {
+    memoScreenVisible = !memoScreenVisible
+    recallScreenVisible = !recallScreenVisible
+    memoScreen.classList.toggle("hide")
+    recallScreen.classList.toggle("hide")
+
+    clearInterval(memoStart)
+
+    recallStart = setInterval(recallCounter, 1000)
+}
+
 // Counter for the recallScreen
 function recallCounter() {
     if (recallTotalTime <= 0) {
@@ -54,20 +69,6 @@ function recallCounter() {
     } else {
         recallTime.innerHTML = `${min}:0${sec}`
     }
-}
-
-// TODO: add more info
-let recallStart
-
-function finishMemo() {
-    memoScreenVisible = !memoScreenVisible
-    recallScreenVisible = !recallScreenVisible
-    memoScreen.classList.toggle("hide")
-    recallScreen.classList.toggle("hide")
-
-    clearInterval(memoStart)
-
-    recallStart = setInterval(recallCounter, 1000)
 }
 
 // // TODO: add more info
