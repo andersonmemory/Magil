@@ -1,3 +1,11 @@
 .hide {
     visibility: hidden;
 }
+
+#current_cards > span > img {
+    width: 5rem;
+}
+
+#remaining_cards > span > img {
+    width: 1rem;
+}

@@ -24,7 +24,7 @@
 
     <!-- group by -->
         <label for="group">Group cards By</label>
-        <select name="group" id="grou_by_cards">
+        <select name="group" id="group_by_cards">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -65,7 +65,9 @@
     <!-- memo screen -->
     <div id="memo_screen" class="hide">
         <p id="memo_time"></p>
-        <p id="number_sequence"></p>
+        <div id="current_cards"></div>
+        <div id="remaining_cards"></div>
+        <button onclick="showNextCards()">Next</button>
         <button onclick="finishMemo()">Finish</button>
     </div>
 

@@ -8,6 +8,13 @@ const deckOfCards = [
 let genCardsList = []
 let currentCards = []
 
+// HTML elements
+
+let currentCardsPlace = document.getElementById("current_cards")
+let remainingCardsPlace = document.getElementById("remaining_cards")
+let groupByCards = document.getElementById("group_by_cards")
+
+
 // Input boxes -- Main screen
 let cardsAmount = document.querySelector("#cards_amount")
 
@@ -126,6 +133,21 @@ function finishRecall() {
     }
 }
 
+// Logic for switching cards by group size
+function showNextCards() {
+
+    let groupSize = parseInt(groupByCards.value)
+
+    currentCards = genCardsList.splice(0, groupSize)
+    updateCardsMemo()
+}
+
+function updateCardsMemo() {
+    currentCardsPlace.innerHTML = currentCards
+    remainingCardsPlace.innerHTML = genCardsList
+}
+
+
 let memoStart
 
 function main() {
@@ -143,5 +165,7 @@ function main() {
     recallTotalTime = parseInt(recallMinutes.value) * 60 + parseInt(recallSeconds.value)
     
     memoStart = setInterval(memoCounter, 1000)
+
+    showNextCards()
 
 }
