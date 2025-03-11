@@ -1,10 +1,5 @@
 let genDigitsList = []
 
-// Conditionals
-let memoScreenVisible = false
-let recallScreenVisible = false
-
-
 // Input boxes -- Main screen
 let digitsAmount = document.querySelector("#digits_amount")
 
@@ -37,8 +32,6 @@ function clearList() {
 }
 
 // Counter for the memoScreen
-let memoElapsedTime = 0
-
 function memoCounter() {
 
     if (memoTotalTime <= 0) {

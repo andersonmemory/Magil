@@ -6,8 +6,12 @@ let memoSeconds = document.querySelector("#memo_seconds")
 let recallMinutes = document.querySelector("#recall_minutes")
 let recallSeconds = document.querySelector("#recall_seconds")
 
-// Counter for the memoScreen
+// Counters and time logic
+let memoTotalTime = 0
 let memoElapsedTime = 0
+
+let recallTotalTime = 0
+let recallElapsedTime = 0
 
 // // Conditionals
 let memoScreenVisible = false
@@ -91,7 +95,6 @@ function generateCards(amount) {
 function clearList() {
     genCardsList = []
 }
-
 
 // Time related logic
 // TODO: modularize the time logic to work across all memory disciplines

@@ -11,6 +11,7 @@ let currentCards = []
 // Input boxes -- Main screen
 let cardsAmount = document.querySelector("#cards_amount")
 
+// Counter for the memoScreen
 function memoCounter() {
 
     if (memoTotalTime <= 0) {
@@ -35,8 +36,6 @@ function memoCounter() {
 }
 
 // Counter for the recallScreen
-let recallElapsedTime = 0
-
 function recallCounter() {
     if (recallTotalTime <= 0) {
         finishRecall()
@@ -57,7 +56,7 @@ function recallCounter() {
     }
 }
 
-// // TODO: add more info
+// TODO: add more info
 let recallStart
 
 function finishMemo() {
