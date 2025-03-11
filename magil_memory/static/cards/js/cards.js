@@ -218,9 +218,6 @@ function main() {
 // Places to place the cards - Temporary
 let place = document.getElementById("place")
 
-let clubsA = '<span><img src="{% static 'cards/cards/clubs_10.png' %}" alt="10 of clubs" style="width: 5rem"></span>'
-
-
 place.innerHTML = clubsA
 
 console.log("hello, world")
