@@ -38,6 +38,8 @@ function generateDigits(amount) {
     // TODO validation checking for more cases instead of just 0
     if (parseInt(amount) == 0) {
         alert("Please provide a valid range")
+    } elseif (parseInt(amount) > 9999) {
+        alert("Only values between 1 and 9999 are allowed")
     }
 
     amount = parseInt(amount)

@@ -12,14 +12,14 @@ let genCardsList = []
 // let recallScreenVisible = false
 
 
-// // Input boxes -- Main screen
-// let cardsAmount = document.querySelector("#cards_amount")
+// Input boxes -- Main screen
+let cardsAmount = document.querySelector("#cards_amount")
 
-// let memoMinutes = document.querySelector("#memo_minutes")
-// let memoSeconds = document.querySelector("#memo_seconds")
+let memoMinutes = document.querySelector("#memo_minutes")
+let memoSeconds = document.querySelector("#memo_seconds")
 
-// let recallMinutes = document.querySelector("#recall_minutes")
-// let recallSeconds = document.querySelector("#recall_seconds")
+let recallMinutes = document.querySelector("#recall_minutes")
+let recallSeconds = document.querySelector("#recall_seconds")
 
 
 // // Screens
@@ -45,6 +45,8 @@ function generateCards(amount) {
     // TODO validation checking for more cases instead of just 0
     if (parseInt(amount) == 0) {
         alert("Please provide a valid range")
+    } elseif (parseInt(amount) > 9999) {
+        alert("Only values between 1 and 9999 are allowed")
     }
 
     amount = parseInt(amount)
@@ -53,7 +55,7 @@ function generateCards(amount) {
 
     shuffleArray(randomizedDeck)
 
-    let newList
+    let newList = []
 
     for (let i = 0, j = 0; i < amount; i++) {
 
@@ -62,7 +64,7 @@ function generateCards(amount) {
             shuffleArray(randomizedDeck)
         }
 
-        newList.append(randomizedDeck[j])
+        newList.push(randomizedDeck[j])
 
         j++
     }
@@ -70,21 +72,21 @@ function generateCards(amount) {
     genCardsList = newList
 }
 
-// function clearList() {
-//     genCardsList = []
-// }
+function clearList() {
+    genCardsList = []
+}
 
-// function checkValidationTimer() {
-//     // TODO: add more checks
-//     if (parseInt(memoMinutes.value) == 0 || parseInt(memoSeconds.value) == 0) {
-//         alert("Please, provide a valid number")
-//         return
-//     }
-//     if (parseInt(recallMinutes.value) == 0 || parseInt(recallSeconds.value) == 0) {
-//         alert("Please, provide a valid number")
-//          return
-//     }
-// }
+function checkValidationTimer() {
+    // TODO: add more checks
+    if (parseInt(memoMinutes.value) == 0 || parseInt(memoSeconds.value) == 0) {
+        alert("Please, provide a valid number")
+        return
+    }
+    if (parseInt(recallMinutes.value) == 0 || parseInt(recallSeconds.value) == 0) {
+        alert("Please, provide a valid number")
+         return
+    }
+}
 
 // // Counter for the memoScreen
 // let memoElapsedTime = 0
@@ -223,12 +225,9 @@ function main() {
 
     // TODO: write generateCards
 
-    generateCards(cardsAmount.value)
 
-    console.log(generateCards)
-
-    // TODO: add more checks
-    // checkValidationTimer()
+    TODO: add more checks
+    checkValidationTimer()
 
     // Initialization
 
@@ -245,15 +244,14 @@ function main() {
 
 // Places to place the cards - Temporary
 
-
 // let tiny_list = [ clubsA, diamonds2, hearts4, spades6 ]
 
 // shuffleArray(tiny_list)
 
-
 // let place = document.getElementById("place")
 
+// console.log(genCardsList)
 
-// place.innerHTML = tiny_list
+// place.innerHTML = genCardsList
 
 // console.log("hello, world")
