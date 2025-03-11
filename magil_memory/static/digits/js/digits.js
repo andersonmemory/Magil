@@ -8,29 +8,6 @@ let recallScreenVisible = false
 // Input boxes -- Main screen
 let digitsAmount = document.querySelector("#digits_amount")
 
-let memoMinutes = document.querySelector("#memo_minutes")
-let memoSeconds = document.querySelector("#memo_seconds")
-
-let recallMinutes = document.querySelector("#recall_minutes")
-let recallSeconds = document.querySelector("#recall_seconds")
-
-
-// Screens
-let initialScreen = document.getElementById("initial_screen")
-let memoScreen = document.getElementById("memo_screen")
-let recallScreen = document.getElementById("recall_screen")
-let discordSubmitScreen = document.getElementById("discord_submit_screen")
-
-// memoScreen   - elements
-let memoTotalTime
-let memoTime = document.getElementById("memo_time")
-let numberSequence = document.getElementById("number_sequence")
-
-// recallScreen - elements
-let recallTotalTime
-let recallTime = document.getElementById("recall_time")
-let recallBox = document.getElementById("recall_box")
-
 function generateDigits(amount) {
 
     clearList()
@@ -42,6 +19,8 @@ function generateDigits(amount) {
     } else if (parseInt(amount) > 9999) {
         alert("Only values between 1 and 9999 are allowed")
         return
+    } else if (parseInt(amount) < 0) {
+        alert("Please provide a valid range")
     }
 
     amount = parseInt(amount)

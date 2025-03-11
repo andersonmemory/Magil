@@ -6,6 +6,9 @@ let memoSeconds = document.querySelector("#memo_seconds")
 let recallMinutes = document.querySelector("#recall_minutes")
 let recallSeconds = document.querySelector("#recall_seconds")
 
+// Counter for the memoScreen
+let memoElapsedTime = 0
+
 // // Conditionals
 let memoScreenVisible = false
 let recallScreenVisible = false
@@ -18,9 +21,6 @@ let discordSubmitScreen = document.getElementById("discord_submit_screen")
 
 // Used both in cards.js and digits.js
 function checkValidationTimer() {
-    
-    console.log(memoMinutes.value)
-    console.log(memoSeconds.value)
 
     // TODO: add more checks
     if (parseInt(memoMinutes.value) == 0 || parseInt(memoSeconds.value) == 0) {
@@ -39,7 +39,6 @@ function checkValidationTimer() {
     }
 }
 
-
 // Used in cards.js
 function shuffleArray(array) {
     for (let i = array.length - 1; i >= 0; i--) {
@@ -47,11 +46,6 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-
-console.log("hello, world this is a helper function!")
-
-console.log(memoMinutes.value)
-console.log(memoSeconds.value)
 
 // Used in cards.js
 function generateCards(amount) {
@@ -65,6 +59,8 @@ function generateCards(amount) {
     } else if (parseInt(amount) > 9999) {
         alert("Only values between 1 and 9999 are allowed")
         return
+    } else if (parseInt(amount) < 0) {
+        alert("Please provide a valid range")
     }
 
     amount = parseInt(amount)
@@ -96,10 +92,6 @@ function clearList() {
     genCardsList = []
 }
 
-function justHello() {
 
-    console.log(memoMinutes.value)
-    console.log(memoSeconds.value)
-
-    console.log("IT IS WORKING OMG")
-}
+// Time related logic
+// TODO: modularize the time logic to work across all memory disciplines
