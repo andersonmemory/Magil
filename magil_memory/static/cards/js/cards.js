@@ -87,7 +87,7 @@ function finishRecall() {
     memoScreenVisible = !memoScreenVisible
     recallScreen.classList.toggle("hide")
     discordSubmitScreen.classList.toggle("hide")
-
+    
     clearInterval(recallStart)
 
     // Check errors

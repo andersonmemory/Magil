@@ -11,7 +11,6 @@
     <!-- load all card variables and images -->
     {% include 'magil_memory/card_instances.html' %}
 
-
     <!-- discord submit screen -->
     <div id="discord_submit_screen" class="hide">
         <form action="/memory/digits/" method="post">
@@ -25,11 +24,10 @@
                 <input type="hidden" name="cards_amount" id="cardsAmount">
                 <input type="hidden" name="user_score" id="userScore">
                 <input type="hidden" name="user_failure" id="userFailure">
-
+    
             <button type=submit>Send</button>
         </form>
     </div> 
-
 
     <main id="initial_screen">
     <!-- loading contents -->
