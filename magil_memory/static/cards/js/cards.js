@@ -174,14 +174,20 @@ function createKeyboard() {
     })
 }
 
-function placeCard(event) {
+function placeCard(event, index) {
     userAnswersList.push(event.target.outerHTML)
-    cardAnswerPlace.append(event.target)
+
+    const card = document.createElement("span")
+    card.innerHTML = event.target.outerHTML
+
+    card.setAttribute("onclick", "undoCard(event)")
+
+    cardAnswerPlace.append(card)
 }
 
-// function undoCard(card) {
-// 
-// }
+function undoCard(event) {
+    event.target.remove()
+}
 
 let memoStart
 
