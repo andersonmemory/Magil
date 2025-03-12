@@ -11,12 +11,7 @@
     <!-- load all card variables and images -->
     {% include 'magil_memory/card_instances.html' %}
 
-    <main id="initial_screen">
-    <!-- loading contents -->
-        <link rel="stylesheet" href="{% static 'cards/css/style.css' %}">
-        <script src="{% static 'cards/js/cards.js' %}" defer></script>
-        <script src="{% static 'helper_functions.js' %}" defer></script>
-        
+
     <!-- discord submit screen -->
     <div id="discord_submit_screen" class="hide">
         <form action="/memory/digits/" method="post">
@@ -30,6 +25,18 @@
                 <input type="hidden" name="cards_amount" id="cardsAmount">
                 <input type="hidden" name="user_score" id="userScore">
                 <input type="hidden" name="user_failure" id="userFailure">
+
+            <button type=submit>Send</button>
+        </form>
+    </div> 
+
+
+    <main id="initial_screen">
+    <!-- loading contents -->
+        <link rel="stylesheet" href="{% static 'cards/css/style.css' %}">
+        <script src="{% static 'cards/js/cards.js' %}" defer></script>
+        <script src="{% static 'helper_functions.js' %}" defer></script>
+        
 
     <!-- amount -->
         <label for="amount">Amount of cards: </label>
@@ -91,9 +98,5 @@
         <div id="card_keyboard"></div>
         <button onclick="finishRecall()">Finish</button>
     </div>
-
-            <button type=submit>Send</button>
-        </form>
-    </div> 
 
 {% endblock %}

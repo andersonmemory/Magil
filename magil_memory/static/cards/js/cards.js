@@ -163,19 +163,8 @@ function createKeyboard() {
 }
 
 function placeCard(event) {
-
     cardAnswerPlace.append(event.target)
 
-    // console.log(event)
-
-    // const card = document.createElement("span")
-
-    // card.append(event.target.querySelector('span'))
-
-    // cardAnswerPlace.append()
-    // event.target.classList.toggle("hide")
-
-    // cardAnswerPlace.append(card)
 }
 
 // function undoCard(card) {
