@@ -162,7 +162,7 @@ function createKeyboard() {
     deckOfCards.forEach((cardElement, index) => {
         const card = document.createElement("span")
         card.innerHTML = cardElement
-        card.setAttribute("onclick", "placeCard(event)")
+        card.setAttribute("onclick", `placeCard(event, ${index})`)
         card.setAttribute("card-id", index)
         card.firstChild.classList.add('keyboard_card')
         console.log(card.outerHTML)
@@ -183,6 +183,12 @@ function placeCard(event, index) {
 
     card.setAttribute("onclick", `undoCard(event, ${index})`)
 
+    if (!(event.target.classList.contains("keyboard_choosen"))) {
+        event.target.parentNode.classList.toggle("keyboard_choosen")
+    }
+
+    
+
     cardAnswerPlace.append(card)
 }
 
@@ -190,7 +196,11 @@ function undoCard(event, index) {
 
     event.target.remove()
     let keyboardEquivalentCard = document.querySelectorAll(`[card-id="${index}"]`)
-    keyboardEquivalentCard.classList.toggle("keyboard_choosen")
+    console.log(keyboardEquivalentCard)
+
+    keyboardEquivalentCard.forEach( (element, index) => {
+        element.firstChild?.classList.toggle("keyboard_choosen")
+    })
 
 }
 

@@ -26,3 +26,13 @@ body {
 .keyboard_choosen {
     opacity: 0.2;
 }
+
+span {
+    position: relative;
+    z-index: 0;
+}
+
+span > img {
+    position: relative;
+    z-index: 10;
+}
