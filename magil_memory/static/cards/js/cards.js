@@ -163,16 +163,16 @@ function createKeyboard() {
 
 function placeCard(event) {
 
-    console.log(event)
+    // console.log(event)
 
-    const new_card = event.target
-    
-    // card.setAttribute("onclick", `event.remove()`)
+    const card = document.createElement("span")
+
+    card.append(event.target.querySelector('span'))
 
     // cardAnswerPlace.append()
     event.target.classList.toggle("hide")
 
-    cardAnswerPlace.append(new_card)
+    cardAnswerPlace.append(card)
 }
 
 // function undoCard(card) {
