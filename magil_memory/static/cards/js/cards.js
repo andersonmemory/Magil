@@ -87,11 +87,10 @@ function finishRecall() {
     memoScreenVisible = !memoScreenVisible
     recallScreen.classList.toggle("hide")
     discordSubmitScreen.classList.toggle("hide")
-    
+
     clearInterval(recallStart)
 
     // Check errors
-
     let userInput = recallBox.value
 
     let failure = 0
@@ -162,8 +161,13 @@ function createKeyboard() {
     })
 }
 
+// TODO: associate card id with deck name
+// TODO: find a way to compare the placed cards with the generated
+// TODO: insert the placed cards in an array so it can compare
 function placeCard(event) {
     cardAnswerPlace.append(event.target)
+
+    console.log(event)
 
 }
 
