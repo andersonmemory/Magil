@@ -156,6 +156,7 @@ function createKeyboard() {
         const card = document.createElement("span")
         card.innerHTML = cardElement
         card.setAttribute("onclick", "placeCard(event)")
+        card.setAttribute("class", "keyboard_card")
         card.setAttribute("card-id", index)
         cardKeyboardPlace.append(card)
     })
@@ -163,16 +164,18 @@ function createKeyboard() {
 
 function placeCard(event) {
 
+    cardAnswerPlace.append(event.target)
+
     // console.log(event)
 
-    const card = document.createElement("span")
+    // const card = document.createElement("span")
 
-    card.append(event.target.querySelector('span'))
+    // card.append(event.target.querySelector('span'))
 
     // cardAnswerPlace.append()
-    event.target.classList.toggle("hide")
+    // event.target.classList.toggle("hide")
 
-    cardAnswerPlace.append(card)
+    // cardAnswerPlace.append(card)
 }
 
 // function undoCard(card) {

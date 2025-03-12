@@ -1,9 +1,18 @@
+#memo_screen * , #recall_screen * , #submit * , #discord_submit_screen * {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 .hide {
     visibility: hidden;
 }
 
 #current_cards > span > img {
     width: 5rem;
+    gap: 1rem;
 }
 
 #remaining_cards > span > img {
