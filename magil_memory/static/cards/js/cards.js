@@ -172,16 +172,8 @@ function createKeyboard() {
     })
 }
 
-// TODO: associate card id with deck name
-// TODO: find a way to compare the placed cards with the generated
-// TODO: insert the placed cards in an array so it can compare
-
 function placeCard(event) {
     userAnswersList.push(event.target.outerHTML)
-
-    // console.log(`UserAnswers: ${userAnswersList}`)
-    // console.log("PLACE")
-
     cardAnswerPlace.append(event.target)
 }
 
