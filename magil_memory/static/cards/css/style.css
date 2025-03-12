@@ -22,3 +22,7 @@ body {
 .keyboard_card {
     width: 2.5rem;
 }
+
+.keyboard_choosen {
+    opacity: 0.2;
+}

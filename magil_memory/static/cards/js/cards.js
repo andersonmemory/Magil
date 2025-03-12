@@ -179,14 +179,19 @@ function placeCard(event, index) {
 
     const card = document.createElement("span")
     card.innerHTML = event.target.outerHTML
+    card.setAttribute("card-id", index)
 
-    card.setAttribute("onclick", "undoCard(event)")
+    card.setAttribute("onclick", `undoCard(event, ${index})`)
 
     cardAnswerPlace.append(card)
 }
 
-function undoCard(event) {
+function undoCard(event, index) {
+
     event.target.remove()
+    let keyboardEquivalentCard = document.querySelectorAll(`[card-id="${index}"]`)
+    keyboardEquivalentCard.classList.toggle("keyboard_choosen")
+
 }
 
 let memoStart
