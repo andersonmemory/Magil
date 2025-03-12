@@ -2,8 +2,10 @@ const deckOfCards = [
     clubsA, clubs2, clubs3, clubs4, clubs5, clubs6, clubs7, clubs8, clubs9, clubs10, clubsJ, clubsQ, clubsK,
     spadesA, spades2, spades3, spades4, spades5, spades6, spades7, spades8, spades9, spades10, spadesJ, spadesQ, spadesK,
     heartsA, hearts2, hearts3, hearts4, hearts5, hearts6, hearts7, hearts8, hearts9, hearts10, heartsJ, heartsQ, heartsK,
-    diamondsA, diamonds2, diamonds3, diamonds4, diamonds5, diamonds6, diamonds7, diamonds8, diamonds9, diamonds10, diamondsJ, diamondsQ, diamondsK,
+    diamondsA, diamonds2, diamonds3, diamonds4, diamonds5, diamonds6, diamonds7, diamonds8, diamonds9, diamonds10, diamondsJ, diamondsQ, diamondsK
 ]
+
+const kings = [heartsK, spadesK, clubsK, diamondsK]
 
 const deckSize = 52
 
@@ -12,8 +14,6 @@ let genCardsList = []
 let copyOfgenCardList = []
 
 let userAnswersList = []
-
-
 
 let currentCards = []
 
@@ -151,9 +151,6 @@ function showNextCards() {
 
     currentCards = copyOfgenCardList.splice(0, groupSize)
     updateCardsMemo()
-
-    console.log(`CopyOfgenCardList: ${copyOfgenCardList}`)
-    console.log(`genCardList: ${genCardsList}`)
 }
 
 function updateCardsMemo() {
@@ -166,9 +163,14 @@ function createKeyboard() {
         const card = document.createElement("span")
         card.innerHTML = cardElement
         card.setAttribute("onclick", "placeCard(event)")
-        card.setAttribute("class", "keyboard_card")
         card.setAttribute("card-id", index)
+        card.firstChild.classList.add('keyboard_card')
+        console.log(card.outerHTML)
         cardKeyboardPlace.append(card)
+
+        if (kings.includes(deckOfCards[index])) {
+            card.innerHTML += '<br>'
+        }
     })
 }
 

@@ -73,7 +73,13 @@ function generateCards(amount) {
 
     amount = parseInt(amount)
 
-    let randomizedDeck = deckOfCards
+    // Initialize a new deckOfCards
+
+    let randomizedDeck = []
+
+    for (let i = 0; i < deckOfCards.length; i++) {
+        randomizedDeck[i] = deckOfCards[i]
+    }
 
     shuffleArray(randomizedDeck)
 
@@ -91,9 +97,7 @@ function generateCards(amount) {
         j++
     }
 
-    console.log(newList)
     genCardsList = newList
-    console.log(genCardsList)
 }
 
 function clearCardList() {

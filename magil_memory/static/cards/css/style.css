@@ -18,3 +18,7 @@ body {
 #remaining_cards > span > img {
     width: 1rem;
 }
+
+.keyboard_card {
+    width: 2.5rem;
+}
