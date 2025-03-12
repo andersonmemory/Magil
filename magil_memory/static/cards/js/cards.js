@@ -8,6 +8,13 @@ const deckOfCards = [
 const deckSize = 52
 
 let genCardsList = []
+
+let copyOfgenCardList = []
+
+let userAnswersList = []
+
+
+
 let currentCards = []
 
 // HTML elements
@@ -90,19 +97,20 @@ function finishRecall() {
 
     clearInterval(recallStart)
 
-    // Check errors
-    let userInput = recallBox.value
+    // Make genCardsList elements compatible with userAnswersList
 
     let failure = 0
     let score = 0
 
-    for (let i = 0; i < cardsAmount.value; i++) {
-        if (userInput[i] == genCardsList[i]) {
+    for (let i = 0, j = genCardsList.length; i < j; i++) {
+        if (genCardsList[i].includes(userAnswersList[i])) {
             score++
         } else {
             failure++
         }
     }
+
+    console.log(`score is ${score} and failure is ${failure}`)
 
     // Preparing to send to Discord
     let memoDjangoElapsed = document.getElementById("memoElapsedTime")
@@ -141,13 +149,16 @@ function showNextCards() {
 
     let groupSize = parseInt(groupByCards.value)
 
-    currentCards = genCardsList.splice(0, groupSize)
+    currentCards = copyOfgenCardList.splice(0, groupSize)
     updateCardsMemo()
+
+    console.log(`CopyOfgenCardList: ${copyOfgenCardList}`)
+    console.log(`genCardList: ${genCardsList}`)
 }
 
 function updateCardsMemo() {
     currentCardsPlace.innerHTML = currentCards
-    remainingCardsPlace.innerHTML = genCardsList
+    remainingCardsPlace.innerHTML = copyOfgenCardList
 }
 
 function createKeyboard() {
@@ -164,11 +175,14 @@ function createKeyboard() {
 // TODO: associate card id with deck name
 // TODO: find a way to compare the placed cards with the generated
 // TODO: insert the placed cards in an array so it can compare
+
 function placeCard(event) {
+    userAnswersList.push(event.target.outerHTML)
+
+    // console.log(`UserAnswers: ${userAnswersList}`)
+    // console.log("PLACE")
+
     cardAnswerPlace.append(event.target)
-
-    console.log(event)
-
 }
 
 // function undoCard(card) {
@@ -192,6 +206,12 @@ function main() {
     recallTotalTime = parseInt(recallMinutes.value) * 60 + parseInt(recallSeconds.value)
     
     memoStart = setInterval(memoCounter, 1000)
+
+    // Initialize copyOfGenCardList
+
+    for (let i = 0; i < genCardsList.length; i++) {
+        copyOfgenCardList[i] = genCardsList[i]
+    }
 
     showNextCards()
 

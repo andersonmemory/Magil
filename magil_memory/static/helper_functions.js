@@ -58,7 +58,7 @@ function shuffleArray(array) {
 // Used in cards.js
 function generateCards(amount) {
 
-    clearList()
+    clearCardList()
 
     // TODO validation checking for more cases instead of just 0
     if (parseInt(amount) == 0) {
@@ -91,12 +91,12 @@ function generateCards(amount) {
         j++
     }
 
+    console.log(newList)
     genCardsList = newList
-
-    return true
+    console.log(genCardsList)
 }
 
-function clearList() {
+function clearCardList() {
     genCardsList = []
 }
 
