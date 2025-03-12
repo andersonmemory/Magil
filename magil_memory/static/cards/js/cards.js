@@ -5,6 +5,8 @@ const deckOfCards = [
     diamondsA, diamonds2, diamonds3, diamonds4, diamonds5, diamonds6, diamonds7, diamonds8, diamonds9, diamonds10, diamondsJ, diamondsQ, diamondsK,
 ]
 
+const deckSize = 52
+
 let genCardsList = []
 let currentCards = []
 
@@ -13,7 +15,8 @@ let currentCards = []
 let currentCardsPlace = document.getElementById("current_cards")
 let remainingCardsPlace = document.getElementById("remaining_cards")
 let groupByCards = document.getElementById("group_by_cards")
-
+let cardKeyboardPlace = document.getElementById("card_keyboard")
+let cardAnswerPlace = document.getElementById("card_answer")
 
 // Input boxes -- Main screen
 let cardsAmount = document.querySelector("#cards_amount")
@@ -55,6 +58,7 @@ function finishMemo() {
     clearInterval(memoStart)
 
     recallStart = setInterval(recallCounter, 1000)
+    createKeyboard()
 }
 
 // Counter for the recallScreen
@@ -147,6 +151,33 @@ function updateCardsMemo() {
     remainingCardsPlace.innerHTML = genCardsList
 }
 
+function createKeyboard() {
+    deckOfCards.forEach((cardElement, index) => {
+        const card = document.createElement("span")
+        card.innerHTML = cardElement
+        card.setAttribute("onclick", "placeCard(event)")
+        card.setAttribute("card-id", index)
+        cardKeyboardPlace.append(card)
+    })
+}
+
+function placeCard(event) {
+
+    console.log(event)
+
+    const new_card = event.target
+    
+    // card.setAttribute("onclick", `event.remove()`)
+
+    // cardAnswerPlace.append()
+    event.target.classList.toggle("hide")
+
+    cardAnswerPlace.append(new_card)
+}
+
+// function undoCard(card) {
+// 
+// }
 
 let memoStart
 
