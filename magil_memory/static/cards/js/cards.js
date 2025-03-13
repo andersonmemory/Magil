@@ -18,7 +18,6 @@ let userAnswersList = []
 let currentCards = []
 
 // HTML elements
-
 let currentCardsPlace = document.getElementById("current_cards")
 let remainingCardsPlace = document.getElementById("remaining_cards")
 let groupByCards = document.getElementById("group_by_cards")
@@ -89,7 +88,7 @@ function recallCounter() {
     }
 }
 
-// // TODO: add more info
+// TODO: add more info
 function finishRecall() {
     memoScreenVisible = !memoScreenVisible
     recallScreen.classList.toggle("hide")
@@ -188,8 +187,6 @@ function placeCard(event, index) {
         event.target.parentNode.classList.toggle("keyboard_choosen")
     }
 
-    
-
     cardAnswerPlace.append(card)
 }
 
@@ -197,7 +194,6 @@ function undoCard(event, index) {
 
     event.target.remove()
     let keyboardEquivalentCard = document.querySelectorAll(`[card-id="${index}"]`)
-    console.log(keyboardEquivalentCard)
 
     keyboardEquivalentCard.forEach( (element, index) => {
         element.firstChild?.classList.toggle("keyboard_choosen")
@@ -213,7 +209,6 @@ function main() {
     checkValidationTimer()
 
     // Initialization
-
     initialScreen.classList.toggle("hide")
     memoScreen.classList.toggle("hide")
     memoScreenVisible = true
@@ -224,7 +219,6 @@ function main() {
     memoStart = setInterval(memoCounter, 1000)
 
     // Initialize copyOfGenCardList
-
     for (let i = 0; i < genCardsList.length; i++) {
         copyOfgenCardList[i] = genCardsList[i]
     }
