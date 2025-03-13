@@ -86,6 +86,9 @@ function recallCounter() {
     } else {
         recallTime.innerHTML = `${min}:0${sec}`
     }
+
+    console.log("User answer:" + userAnswersList)
+    console.log("Gen list:" + genCardsList)
 }
 
 // TODO: add more info
@@ -194,6 +197,7 @@ function undoCard(event, index) {
 
     event.target.remove()
     let keyboardEquivalentCard = document.querySelectorAll(`[card-id="${index}"]`)
+    userAnswersList.pop()
 
     keyboardEquivalentCard.forEach( (element, index) => {
         element.firstChild?.classList.toggle("keyboard_choosen")
