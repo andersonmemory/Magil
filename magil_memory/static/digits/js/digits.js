@@ -1,5 +1,8 @@
 let genDigitsList = []
 
+let numberSequence = document.getElementById("number_sequence")
+let recallBox = document.getElementById("recall_box")
+
 // Input boxes -- Main screen
 let digitsAmount = document.querySelector("#digits_amount")
 
@@ -57,8 +60,6 @@ function memoCounter() {
 }
 
 // Counter for the recallScreen
-let recallElapsedTime = 0
-
 function recallCounter() {
     if (recallTotalTime <= 0) {
         finishRecall()

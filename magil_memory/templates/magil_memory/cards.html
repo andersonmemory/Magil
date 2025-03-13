@@ -18,7 +18,6 @@
         <link rel="stylesheet" href="{% static 'cards/css/style.css' %}">
         <script src="{% static 'cards/js/cards.js' %}" defer></script>
         <script src="{% static 'helper_functions.js' %}" defer></script>
-        
 
     <!-- amount -->
         <label for="amount">Amount of cards: </label>
@@ -83,7 +82,7 @@
 
     <!-- discord submit screen -->
     <div id="discord_submit_screen" class="hide">
-        <form action="/memory/digits/" method="post">
+        <form action="/memory/cards/" method="post">
             {% csrf_token %}
             <label for="discord_id">Your Discord id</label>
             <input type="text" name="discord_id" placeholder="ex: 123456789012345678">

@@ -96,12 +96,9 @@ function finishRecall() {
     discordSubmitScreen.classList.toggle("hide")
 
     // Remove the keyboard from the DOM, restore pixels back to page
-
     cardKeyboardPlace.remove()
 
     clearInterval(recallStart)
-
-    // Make genCardsList elements compatible with userAnswersList
 
     let failure = 0
     let score = 0
