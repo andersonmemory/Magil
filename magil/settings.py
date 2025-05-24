@@ -35,14 +35,14 @@ ALLOWED_HOSTS = os.getenv("HOSTS", "").split(",")
 # Application definition
 
 INSTALLED_APPS = [
+    'magil_memory.apps.MagilMemoryConfig',
+    'magil_math.apps.MagilMathConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'magil_memory',
-    'magil_math',
 ]
 
 MIDDLEWARE = [
