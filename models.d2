@@ -1,0 +1,25 @@
+user: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  discord_id: default NULL
+}
+
+session_memory: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  user: obj {constraint: foreign_key}
+  discipline: obj {constraint: foreign_key}
+  creation_date
+  amount
+  errors
+  score
+  memo_time
+  recall_time
+  memo_selected_time
+}
+
+discipline: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  name: unique
+}
