@@ -31,10 +31,10 @@ class SessionMemory(models.Model):
     discipline = models.ForeignKey(
         Discipline, on_delete=models.CASCADE, related_name="sessions_memo"
     )
-    # creation_date
-    # amount
-    # errors
-    # score
-    # memo_time
-    # recall_time
-    # memo_selected_time
+    creation_date = models.DateTimeField(auto_now=True)
+    amount = models.IntegerField(null=False)
+    errors = models.IntegerField(null=False, default=0)
+    score = models.IntegerField(null=False)
+    memo_time = models.BigIntegerField(null=False)
+    recall_time = models.BigIntegerField(null=False)
+    memo_selected_time = models.BigIntegerField(null=False)
