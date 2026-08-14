@@ -23,3 +23,6 @@ discipline: {
   id: int {constraint: primary_key}
   name: unique
 }
+
+user.id -> session_memory.user: 1:N
+session_memory.discipline -> discipline.id: N:1
