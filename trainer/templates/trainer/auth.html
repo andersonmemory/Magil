@@ -1,0 +1,39 @@
+{% extends 'trainer/layout.html' %}
+{% load static %}
+
+{% block style %}
+
+    {% static 'trainer/auth.css' %}
+ 
+{% endblock style %}
+
+{% block title %}
+    Registro
+{% endblock title %}
+
+{% block body %}
+    <div class="container">
+        <form action="{% url 'trainer:register' %}" method="post">
+            {% csrf_token %}
+
+            <div class="input-box">
+                <input type="text" name="username" placeholder="Usuário">
+            </div>
+
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Senha">
+            </div>
+
+            <div class="input-box">
+                <input type="password" name="password_confirm" placeholder="Senha">
+            </div>
+
+
+            <input class="btn" type="submit" value="Login">
+        </form>
+
+        <p>Sem conta? <a href="#">Registre-se</a></p>
+
+    </div>
+
+{% endblock body %}

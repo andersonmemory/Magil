@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  background: url("auth-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 400px;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  padding: 20px 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.container input-box {
+  width: 100%;
+}
+
+.input-box input {
+  width: 100%;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  margin: 5px 0;
+  background-color: transparent;
+}
+
+.input-box input::placeholder {
+  color: #fff;
+}
+
+.container .btn {
+  width: 100%;
+  border-radius: 12px;
+  border: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+}
+
+.container p {
+  margin-top: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+.container p a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
