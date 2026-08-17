@@ -1,0 +1,47 @@
+{% extends 'trainer/layout.html' %}
+{% load static %}
+
+{% block style %}
+
+
+{% endblock style %}
+
+{% block body %}
+
+    <div class="container">
+
+        <!-- Palavras -->
+        <div class="card">
+            <img src="{% static 'trainer/index/words.svg' %}" alt="Ícone representando a disciplina de memorização de palavras" />
+        </div>
+
+        <!-- Cartas -->
+        <div class="card">
+            <img src="{% static 'trainer/index/cards.svg' %}" alt="Ícone representando a disciplina de memorização de cartas" />
+        </div>
+
+        <!-- Nomes e Rostos -->
+        <div class="card">
+            <img src="{% static 'trainer/index/names_and_faces.svg' %}" alt="Ícone representando a disciplina de memorização de nomes e rostos" />
+        </div>
+
+        <!-- Dígitos -->
+        <div class="card">
+            <img src="{% static 'trainer/index/numbers.svg' %}" alt="Ícone representando a disciplina de memorização de dígitos numéricos" />
+        </div>
+
+        <!-- Imagens Abstratas -->
+        <div class="card">
+            <img src="{% static 'trainer/index/abstract_images.svg' %}" alt="Ícone representando a disciplina de memorização de imagens abstratas" />
+        </div>
+
+        <!-- Números Falados -->
+        <div class="card">
+            <img src="{% static 'trainer/index/spoken_numbers.svg' %}" alt="Ícone representando a disciplina de memorização de números falados" />
+        </div>
+
+    </div>
+{% endblock body %}
+
+{% block script %}
+{% endblock script %}
