@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("index-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 300px 300px;
+  grid-template-rows: 200px 200px 200px;
+  gap: 10px;
+}
+
+.container .card {
+  text-align: center;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.card p {
+  color: #fff;
+
+}
+
+.card img {
+  width: 50%;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(226deg) brightness(108%) contrast(101%);
+
+}
+
+.card {
+  transition: all 0.2s ease-out;
+}
+
+.card:hover {
+  cursor: pointer;
+  filter: brightness(1) drop-shadow(0 0 30px rgba(255, 255, 255, 0.2)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.2));
+}

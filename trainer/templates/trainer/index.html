@@ -3,6 +3,7 @@
 
 {% block style %}
 
+    <link rel="stylesheet" href="{% static 'trainer/index.css' %}">
 
 {% endblock style %}
 
@@ -10,34 +11,40 @@
 
     <div class="container">
 
-        <!-- Palavras -->
+        <!-- Words -->
         <div class="card">
             <img src="{% static 'trainer/index/words.svg' %}" alt="Ícone representando a disciplina de memorização de palavras" />
+            <p>Palavras</p>
         </div>
 
-        <!-- Cartas -->
+        <!-- Cards -->
         <div class="card">
             <img src="{% static 'trainer/index/cards.svg' %}" alt="Ícone representando a disciplina de memorização de cartas" />
+            <p>Cartas</p>
         </div>
 
-        <!-- Nomes e Rostos -->
+        <!-- Names and Faces -->
         <div class="card">
             <img src="{% static 'trainer/index/names_and_faces.svg' %}" alt="Ícone representando a disciplina de memorização de nomes e rostos" />
+            <p>Nomes e rostos</p>
         </div>
 
-        <!-- Dígitos -->
+        <!-- Digits -->
         <div class="card">
             <img src="{% static 'trainer/index/numbers.svg' %}" alt="Ícone representando a disciplina de memorização de dígitos numéricos" />
+            <p>Números</p>
         </div>
 
-        <!-- Imagens Abstratas -->
+        <!-- Abstract Images -->
         <div class="card">
             <img src="{% static 'trainer/index/abstract_images.svg' %}" alt="Ícone representando a disciplina de memorização de imagens abstratas" />
+            <p>Imagens abstratas</p>
         </div>
 
-        <!-- Números Falados -->
+        <!-- Spoken Numbers -->
         <div class="card">
             <img src="{% static 'trainer/index/spoken_numbers.svg' %}" alt="Ícone representando a disciplina de memorização de números falados" />
+            <p>Números falados</p>
         </div>
 
     </div>
