@@ -47,14 +47,33 @@ body {
   padding: 10px;
 }
 
-.container p {
+.container .bottom_msg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   margin-top: 10px;
-  text-align: center;
+
+}
+
+.container .bottom_msg p {
+  height: 100%;
   color: #fff;
 }
 
-.container p a {
+.container .bottom_msg a {
+  height: 100%;
   color: #fff;
   font-weight: 600;
   text-decoration: none;
+}
+
+.container .btn {
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.container .btn:hover {
+  background-color: blueviolet;
+  color: #fff;
 }
