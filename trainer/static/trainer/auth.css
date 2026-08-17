@@ -130,17 +130,6 @@ body {
   animation-fill-mode: both;
 }
 
-/* .hide input { */
-/*   animation-name: hide; */
-/*   animation-duration: 2s; */
-/*   animation-fill-mode: both; */
-/*   animation-timing-function: ease-in-out; */
-/* } */
-/**/
-/* .appear input { */
-/*   animation-name: appear; */
-/*   animation-duration: 2s; */
-/*   animation-fill-mode: both; */
-/*   animation-timing-function: ease-in-out; */
-/**/
-/* } */
+.input-box input {
+  color: #fff;
+}
