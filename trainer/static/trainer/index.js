@@ -1,3 +1,6 @@
+import { generateNumbers, parseNumbers } from './helper_index.js';
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const menu = document.querySelector('#menu');
   const settings = document.querySelector('#settings');
@@ -42,9 +45,9 @@ function startMemo(name, object) {
 
     return;
   }
-
+  console.log("object:", object);
   // TODO: add values from object to a more personalized experience
-  list = generateList(name)
+  const list = generateList(name, parseInt(object.amount));
 
   // Instance the memo screen
   document.querySelector('body').append(MemoScreen(list))
@@ -55,7 +58,7 @@ function startMemo(name, object) {
 
 }
 
-function generateList(type) {
+function generateList(type, amount) {
   // TODO: implement each return type
   // by doing fetch in the server
   switch (type) {
@@ -69,7 +72,7 @@ function generateList(type) {
       return ['name1', 'name2', 'name3']
       break;
     case 'numbers':
-      return ['1', '2', '3']
+      return generateNumbers(amount);
       break;
     case 'abstract_images':
       return ['image1', 'image2', 'image3']
@@ -107,7 +110,7 @@ function recallScreen(list) {
   finish_btn.innerHTML = 'Finalizar';
 
   finish_btn.onclick = () => {
-    const score = computeResult(list, input.value);
+    const score = computeResult(list, parseNumbers(input.value));
     // TODO: later instead of just one score it will be an object
     // containing all necessary info
     document.querySelector('body').append(resultScreen(score, input.value));
@@ -129,12 +132,12 @@ function computeResult(originalList, userInput) {
     if (originalList[i] === userInput[i]) {
       score++;
     }
-
   }
   console.log(originalList, userInput)
-
   console.log(score);
+
   return score;
+
 }
 
 function resultScreen(score, userInput) {
@@ -151,7 +154,6 @@ function resultScreen(score, userInput) {
   score_info.innerHTML = score;
 
   back_btn.onclick = () => {
-    const score = computeResult(list, userInput);
     // TODO: later instead of just one score it will be an object
     // containing all necessary info
 
