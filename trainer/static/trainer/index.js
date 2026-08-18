@@ -123,9 +123,15 @@ function recallScreen(list) {
 // TODO: implement valid checking
 function computeResult(originalList, userInput) {
 
-  console.log(originalList, userInput)
+  let score = 0;
 
-  let score = 5;
+  for (let i = 0; i < originalList.length; i++) {
+    if (originalList[i] === userInput[i]) {
+      score++;
+    }
+
+  }
+  console.log(originalList, userInput)
 
   console.log(score);
   return score;
