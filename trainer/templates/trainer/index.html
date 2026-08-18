@@ -9,46 +9,61 @@
 
 {% block body %}
 
-    <div class="container">
+    <div id="menu" class="container">
 
-        <!-- Words -->
-        <div class="card">
+        <div data-discipline="words" class="card">
             <img src="{% static 'trainer/index/words.svg' %}" alt="Ícone representando a disciplina de memorização de palavras" />
             <p>Palavras</p>
         </div>
 
-        <!-- Cards -->
-        <div class="card">
+        <div data-discipline="cards" class="card">
             <img src="{% static 'trainer/index/cards.svg' %}" alt="Ícone representando a disciplina de memorização de cartas" />
             <p>Cartas</p>
         </div>
 
-        <!-- Names and Faces -->
-        <div class="card">
+        <div data-discipline="names_and_faces" class="card">
             <img src="{% static 'trainer/index/names_and_faces.svg' %}" alt="Ícone representando a disciplina de memorização de nomes e rostos" />
             <p>Nomes e rostos</p>
         </div>
 
-        <!-- Digits -->
-        <div class="card">
+        <div data-discipline="numbers" class="card">
             <img src="{% static 'trainer/index/numbers.svg' %}" alt="Ícone representando a disciplina de memorização de dígitos numéricos" />
             <p>Números</p>
         </div>
 
-        <!-- Abstract Images -->
-        <div class="card">
+        <div data-discipline="abstract_images" class="card">
             <img src="{% static 'trainer/index/abstract_images.svg' %}" alt="Ícone representando a disciplina de memorização de imagens abstratas" />
             <p>Imagens abstratas</p>
         </div>
 
-        <!-- Spoken Numbers -->
-        <div class="card">
+        <div data-discipline="spoken_numbers" class="card">
             <img src="{% static 'trainer/index/spoken_numbers.svg' %}" alt="Ícone representando a disciplina de memorização de números falados" />
             <p>Números falados</p>
         </div>
-
     </div>
+
+    <div id="settings" clas="settings">
+        <form>
+            <div class="input-box">
+                <input type="text" name="memo" value="" placeholder="Tempo de memorização">
+            </div>
+            <div class="input-box">
+                <input type="text" name="recall" value="" placeholder="Tempo de recall">
+            </div>
+            <div class="input-box">
+                <input type="text" name="group-by" value="" placeholder="Quantos por vez">
+            </div>
+            <div class="input-box">
+                <input type="text" name="amount" value="" placeholder="Quantidade">
+            </div>
+            <button type="submit">Começar</button>
+        </form>
+    </div>
+
 {% endblock body %}
 
 {% block script %}
+
+    <script src="{% static 'trainer/index.js' %}"></script>
+
 {% endblock script %}
