@@ -1,4 +1,4 @@
-import { generateNumbers, parseNumbers } from './helper_index.js';
+import { generateWords, generateNumbers, parseNumbers } from './helper_index.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-function startMemo(name, object) {
+async function startMemo(name, object) {
 
   document.querySelector('#menu').style.display = 'none';
   document.querySelector('#settings').style.display = 'none';
@@ -47,7 +47,7 @@ function startMemo(name, object) {
   }
   console.log("object:", object);
   // TODO: add values from object to a more personalized experience
-  const list = generateList(name, parseInt(object.amount));
+  const list = await generateList(name, parseInt(object.amount));
 
   // Instance the memo screen
   document.querySelector('body').append(MemoScreen(list))
@@ -63,7 +63,7 @@ function generateList(type, amount) {
   // by doing fetch in the server
   switch (type) {
     case 'words':
-      return ['a', 'b', 'c']
+      return generateWords(amount)
       break;
     case 'cards':
       return ['card1', 'card2', 'card3']

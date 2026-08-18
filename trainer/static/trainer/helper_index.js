@@ -1,5 +1,19 @@
 /**
- * Create a number sequence based on its amount
+ * Creates a word sequence based on its amount
+ * @param {*} amount
+ */
+export async function generateWords(amount) {
+  const words = await fetch(`https://random-word-api.herokuapp.com/word?number=${amount}&lang=pt-br`)
+    .then(response => { return response.json(); })
+    .then(data => {
+      console.log(data);
+      return data;
+    })
+  return words;
+};
+
+/**
+ * Creates a number sequence based on its amount
  * @param {*} amount
  */
 export function generateNumbers(amount) {
@@ -11,7 +25,7 @@ export function generateNumbers(amount) {
 }
 
 /**
- * Normalize input to work with the numbers discipline
+ * Normalizes input to work with the numbers discipline
  * @param {*} sequence
  */
 export function parseNumbers(sequence) {
