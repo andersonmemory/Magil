@@ -35,3 +35,29 @@ export function parseNumbers(sequence) {
   }
   return new_sequence;
 };
+
+/**
+ * Normalizes input to work with the words discipline
+ * @param {*} sequence
+ */
+export function parseWords(sequence) {
+  return sequence.split(' ');
+};
+
+
+/**
+ * Returns the right parser function according to the discipline name
+ * @param {*} discipline
+ */
+export function chooseParser(discipline) {
+
+  switch (discipline) {
+    case 'numbers':
+      return parseNumbers;
+      break;
+    case 'words':
+      return parseWords;
+      break;
+  }
+
+};

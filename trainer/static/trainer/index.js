@@ -1,4 +1,4 @@
-import { generateWords, generateNumbers, parseNumbers } from './helper_index.js';
+import { chooseParser, generateWords, generateNumbers, parseNumbers } from './helper_index.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -50,7 +50,7 @@ async function startMemo(name, object) {
   const list = await generateList(name, parseInt(object.amount));
 
   // Instance the memo screen
-  document.querySelector('body').append(MemoScreen(list))
+  document.querySelector('body').append(MemoScreen(name, list))
 
   console.log(object);
 
@@ -58,12 +58,12 @@ async function startMemo(name, object) {
 
 }
 
-function generateList(type, amount) {
+async function generateList(type, amount) {
   // TODO: implement each return type
   // by doing fetch in the server
   switch (type) {
     case 'words':
-      return generateWords(amount)
+      return await generateWords(amount)
       break;
     case 'cards':
       return ['card1', 'card2', 'card3']
@@ -80,7 +80,7 @@ function generateList(type, amount) {
   }
 }
 
-function MemoScreen(list) {
+function MemoScreen(name, list) {
   const next_btn = document.createElement('button');
   const memo = document.createElement('div');
   memo.classList.add('screen');
@@ -93,7 +93,7 @@ function MemoScreen(list) {
   });
 
   next_btn.onclick = () => {
-    document.querySelector('body').append(recallScreen(list));
+    document.querySelector('body').append(recallScreen(name, list));
     memo.remove();
   };
 
@@ -101,7 +101,7 @@ function MemoScreen(list) {
   return memo;
 }
 
-function recallScreen(list) {
+function recallScreen(name, list) {
   const recall = document.createElement('div');
   recall.classList.add('screen');
 
@@ -109,11 +109,13 @@ function recallScreen(list) {
   const finish_btn = document.createElement('button');
   finish_btn.innerHTML = 'Finalizar';
 
+  const parser = chooseParser(name);
+
   finish_btn.onclick = () => {
-    const score = computeResult(list, parseNumbers(input.value));
+    const score = computeResult(list, parser(input.value));
     // TODO: later instead of just one score it will be an object
     // containing all necessary info
-    document.querySelector('body').append(resultScreen(score, input.value));
+    document.querySelector('body').append(resultScreen(score));
     recall.remove();
 
   };
@@ -140,7 +142,7 @@ function computeResult(originalList, userInput) {
 
 }
 
-function resultScreen(score, userInput) {
+function resultScreen(score) {
   const result = document.createElement('div');
   result.classList.add('screen');
 
