@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // assumes all values are valid
       // TODO: add error handler
       //
-      startMemo({ chosen_discipline, data });
+      startMemo(chosen_discipline, data);
     }
 
   });
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-function startMemo({ name, object }) {
+function startMemo(name, object) {
 
   document.querySelector('#menu').style.display = 'none';
   document.querySelector('#settings').style.display = 'none';
@@ -59,33 +59,104 @@ function generateList(type) {
   // TODO: implement each return type
   // by doing fetch in the server
   switch (type) {
-    case type === "words":
+    case 'words':
       return ['a', 'b', 'c']
       break;
-    case type === "cards":
+    case 'cards':
       return ['card1', 'card2', 'card3']
       break;
-    case type === "names_and_faces":
+    case 'names_and_faces':
       return ['name1', 'name2', 'name3']
       break;
-    case type === "numbers":
+    case 'numbers':
       return ['1', '2', '3']
       break;
-    case type === "abstract_images":
+    case 'abstract_images':
       return ['image1', 'image2', 'image3']
       break;
   }
 }
 
 function MemoScreen(list) {
+  const next_btn = document.createElement('button');
   const memo = document.createElement('div');
-  memo.classList.add('screen')
+  memo.classList.add('screen');
+  next_btn.innerHTML = 'Próximo';
 
   list.forEach((item) => {
     const element = document.createElement('p');
     element.innerHTML = item;
-    memo.append(element)
+    memo.append(element);
   });
 
+  next_btn.onclick = () => {
+    document.querySelector('body').append(recallScreen(list));
+    memo.remove();
+  };
+
+  memo.append(next_btn);
   return memo;
+}
+
+function recallScreen(list) {
+  const recall = document.createElement('div');
+  recall.classList.add('screen');
+
+  const input = document.createElement('input');
+  const finish_btn = document.createElement('button');
+  finish_btn.innerHTML = 'Finalizar';
+
+  finish_btn.onclick = () => {
+    const score = computeResult(list, input.value);
+    // TODO: later instead of just one score it will be an object
+    // containing all necessary info
+    document.querySelector('body').append(resultScreen(score, input.value));
+    recall.remove();
+
+  };
+
+  recall.append(input, finish_btn);
+
+  return recall;
+}
+
+// TODO: implement valid checking
+function computeResult(originalList, userInput) {
+
+  console.log(originalList, userInput)
+
+  let score = 5;
+
+  console.log(score);
+  return score;
+}
+
+function resultScreen(score, userInput) {
+  const result = document.createElement('div');
+  result.classList.add('screen');
+
+  // TODO: add 'send to Discord' button
+  // TODO: add 'again' button
+  const back_btn = document.createElement('button');
+  back_btn.innerHTML = 'Voltar';
+
+  const score_info = document.createElement('h1');
+  score_info.style.color = "#fff";
+  score_info.innerHTML = score;
+
+  back_btn.onclick = () => {
+    const score = computeResult(list, userInput);
+    // TODO: later instead of just one score it will be an object
+    // containing all necessary info
+
+    document.querySelector('#menu').style.display = 'grid';
+    document.querySelector('#settings').style.display = 'none';
+
+    result.remove();
+  };
+  // recall.append(input, finish_btn);
+
+  result.append(score_info, back_btn);
+
+  return result;
 }
