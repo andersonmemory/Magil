@@ -61,3 +61,50 @@ export function chooseParser(discipline) {
   }
 
 };
+
+/**
+ * Async helper for dealing with the waiting mechanism for SpokenNumbers
+ * @param {*} sequence
+ */
+function wait(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+
+}
+
+/**
+ * Async helper for handling the waiting mechanism for SpokenNumbers
+ * @param {*} sequence
+ */
+function playAndWait(audio) {
+
+  return new Promise((resolve) => {
+    audio.play();
+    audio.addEventListener('ended', resolve);
+  });
+
+}
+
+/**
+ * Say numbers out loudly from a given sequence
+ * @param {*} sequence
+ */
+export async function playSpokenNumbers(sequence) {
+
+  const audioPaths = JSON.parse(document.querySelector('#audio-paths').textContent);
+  const audioList = [];
+
+  audioPaths.forEach((item) => {
+    audioList.push(new Audio(item));
+  });
+
+  for (let i = 0; i < sequence.length; i++) {
+    await playAndWait(audioList[sequence[i]]);
+    // TODO: eliminate hardcode and allow dynamic customization from user
+    await wait(1000);
+
+  };
+
+
+}

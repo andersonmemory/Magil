@@ -1,4 +1,4 @@
-import { chooseParser, generateWords, generateNumbers, parseNumbers } from './helper_index.js';
+import { chooseParser, generateWords, generateNumbers, parseNumbers, playSpokenNumbers } from './helper_index.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,16 +41,16 @@ async function startMemo(name, object) {
   document.querySelector('#menu').style.display = 'none';
   document.querySelector('#settings').style.display = 'none';
 
-  if (name === "spoken_numbers") {
-
-    return;
-  }
+  // if (name === "spoken_numbers") {
+  //
+  //   return;
+  // }
   console.log("object:", object);
   // TODO: add values from object to a more personalized experience
   const list = await generateList(name, parseInt(object.amount));
 
   // Instance the memo screen
-  document.querySelector('body').append(MemoScreen(name, list))
+  await MemoScreen(name, list);
 
   console.log(object);
 
@@ -74,34 +74,51 @@ async function generateList(type, amount) {
     case 'numbers':
       return generateNumbers(amount);
       break;
+    case 'spoken_numbers':
+      return generateNumbers(amount);
+      break;
     case 'abstract_images':
       return ['image1', 'image2', 'image3']
       break;
   }
 }
 
-function MemoScreen(name, list) {
+async function MemoScreen(name, list) {
   const next_btn = document.createElement('button');
   const memo = document.createElement('div');
   memo.classList.add('screen');
   next_btn.innerHTML = 'Próximo';
+  if (name === 'spoken_numbers') {
+    // TODO: add proper icon as an svg instead of this emoji
+    const sound_icon = document.createElement('p');
+    sound_icon.innerHTML = '🎧'
+    sound_icon.style.fontSize = '150px';
+    sound_icon.style.textAlign = 'center';
+    sound_icon.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+    sound_icon.style.borderRadius = '100px';
+    sound_icon.style.margin = '30px';
+    sound_icon.style.padding = '30px';
+    sound_icon.style.backdropFilter = 'blur(10px)';
+    memo.append(sound_icon);
+    document.querySelector('body').append(memo);
+    await playSpokenNumbers(list);
+  } else {
+    list.forEach((item) => {
+      const element = document.createElement('p');
+      element.innerHTML = item;
+      memo.append(element);
+    });
+  }
 
-  list.forEach((item) => {
-    const element = document.createElement('p');
-    element.innerHTML = item;
-    memo.append(element);
-  });
-
-  next_btn.onclick = () => {
-    document.querySelector('body').append(recallScreen(name, list));
+  next_btn.onclick = async () => {
+    document.querySelector('body').append(await recallScreen(name, list));
     memo.remove();
   };
 
   memo.append(next_btn);
-  return memo;
 }
 
-function recallScreen(name, list) {
+async function recallScreen(name, list) {
   const recall = document.createElement('div');
   recall.classList.add('screen');
 
@@ -111,8 +128,8 @@ function recallScreen(name, list) {
 
   const parser = chooseParser(name);
 
-  finish_btn.onclick = () => {
-    const score = computeResult(list, parser(input.value));
+  finish_btn.onclick = async () => {
+    const score = computeResult(list, await parser(input.value));
     // TODO: later instead of just one score it will be an object
     // containing all necessary info
     document.querySelector('body').append(resultScreen(score));
