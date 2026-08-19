@@ -1,4 +1,4 @@
-import { chooseParser, generateWords, generateNumbers, parseNumbers, playSpokenNumbers } from './helper_index.js';
+import { shuffleArray, chooseParser, generateWords, generateNumbers, parseNumbers, playSpokenNumbers } from './helper_index.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -63,13 +63,13 @@ async function generateList(type, amount) {
   // by doing fetch in the server
   switch (type) {
     case 'words':
-      return await generateWords(amount)
+      return await generateWords(amount);
       break;
     case 'cards':
-      return ['card1', 'card2', 'card3']
+      return ['card1', 'card2', 'card3'];
       break;
     case 'names-and-faces':
-      return ['name1', 'name2', 'name3']
+      return ['name1', 'name2', 'name3'];
       break;
     case 'numbers':
       return generateNumbers(amount);
@@ -77,8 +77,8 @@ async function generateList(type, amount) {
     case 'spoken-numbers':
       return generateNumbers(amount);
       break;
-    case 'abstract-images':
-      return ['image1', 'image2', 'image3']
+    case 'images':
+      return ['https://fastly.picsum.photos/id/958/200/200.jpg?hmac=WdLUMERHKTLw-sP-eIf1-JlwdIT2ZY12zf4JbnQR_s8', 'https://fastly.picsum.photos/id/769/200/200.jpg?hmac=M55kAfuYOrcJ8a49hBRDhWtVLbJo88Y76kUz323SqLU', 'https://fastly.picsum.photos/id/170/200/200.jpg?hmac=2Xh3j3MMZE07_G7UDPgPRm557LRHzyFrkyeWRXdhdvU'];
       break;
   }
 }
@@ -88,6 +88,7 @@ async function MemoScreen(name, list) {
   const memo = document.createElement('div');
   memo.classList.add('screen');
   next_btn.innerHTML = 'Próximo';
+  document.querySelector('body').append(memo);
   if (name === 'spoken-numbers') {
     // TODO: add proper icon as an svg instead of this emoji
     const sound_icon = document.createElement('p');
@@ -100,8 +101,25 @@ async function MemoScreen(name, list) {
     sound_icon.style.padding = '30px';
     sound_icon.style.backdropFilter = 'blur(10px)';
     memo.append(sound_icon);
-    document.querySelector('body').append(memo);
+    // document.querySelector('body').append(memo);
     await playSpokenNumbers(list);
+  } else if (name === 'images') {
+    // TODO: CSS will turn into a grid
+    memo.classList.add('images-screen')
+    console.log(list);
+    list.forEach((src) => {
+      const img = document.createElement('img');
+      img.src = src;
+      console.log(img);
+      memo.append(img);
+    });
+    //
+    // list.forEach((item) => {
+    //   const element = document.createElement('p');
+    //   element.innerHTML = item;
+    //   memo.append(element);
+    // });
+    //
   } else {
     list.forEach((item) => {
       const element = document.createElement('p');
@@ -120,25 +138,62 @@ async function MemoScreen(name, list) {
 
 async function recallScreen(name, list) {
   const recall = document.createElement('div');
-  recall.classList.add('screen');
 
-  const input = document.createElement('input');
-  const finish_btn = document.createElement('button');
-  finish_btn.innerHTML = 'Finalizar';
 
-  const parser = chooseParser(name);
+  if (name === 'images') {
 
-  finish_btn.onclick = async () => {
-    const score = computeResult(list, parser(input.value));
-    // TODO: later instead of just one score it will be an object
-    // containing all necessary info
-    document.querySelector('body').append(resultScreen(score));
-    recall.remove();
+    recall.style.display = 'grid';
+    recall.style.gridTemplateColumns = "200px 200px 200px";
 
+    const randomized = shuffleArray(list);
+    const placedSequence = document.createElement('div');
+    placedSequence.id = 'placed-sequence';
+    placedSequence.style.border = '1px solid green';
+
+    const availableImages = document.createElement('div');
+    availableImages.id = 'available-images';
+    availableImages.style.border = "1px solid blue";
+
+    randomized.forEach((src) => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.style.cursor = 'pointer';
+      img.style.display = 'block';
+
+      availableImages.append(img);
+
+      img.onclick = () => {
+        const place = document.querySelector('#placed-sequence');
+        const tray = document.querySelector('#available-images');
+
+        if (img.parentElement === place) {
+          tray.appendChild(img);
+        } else if (img.parentElement === tray) {
+          place.appendChild(img);
+        }
+      };
+    })
+
+    recall.append(placedSequence, availableImages);
+
+  } else {
+
+    const input = document.createElement('input');
+    const finish_btn = document.createElement('button');
+    finish_btn.innerHTML = 'Finalizar';
+
+    const parser = chooseParser(name);
+
+    finish_btn.onclick = async () => {
+      const score = computeResult(list, parser(input.value));
+      // TODO: later instead of just one score it will be an object
+      // containing all necessary info
+      document.querySelector('body').append(resultScreen(score));
+      recall.remove();
+
+      recall.append(input, finish_btn);
+    };
   };
-
-  recall.append(input, finish_btn);
-
   return recall;
 }
 
