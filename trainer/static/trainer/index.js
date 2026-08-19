@@ -127,10 +127,6 @@ async function recallScreen(name, list) {
   finish_btn.innerHTML = 'Finalizar';
 
   const parser = chooseParser(name);
-  console.log('------------------');
-  console.log('this is my parser');
-  console.log(parser);
-  console.log('------------------');
 
   finish_btn.onclick = async () => {
     const score = computeResult(list, parser(input.value));
