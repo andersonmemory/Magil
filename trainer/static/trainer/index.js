@@ -138,7 +138,7 @@ async function MemoScreen(name, list) {
 
 async function recallScreen(name, list) {
   const recall = document.createElement('div');
-
+  // recall.classList.add('screen');
 
   if (name === 'images') {
 
@@ -191,8 +191,9 @@ async function recallScreen(name, list) {
       document.querySelector('body').append(resultScreen(score));
       recall.remove();
 
-      recall.append(input, finish_btn);
     };
+
+    recall.append(input, finish_btn);
   };
   return recall;
 }
