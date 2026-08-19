@@ -139,6 +139,7 @@ async function MemoScreen(name, list) {
 async function recallScreen(name, list) {
   const recall = document.createElement('div');
 
+  let inputValue;
   let inputSpace;
   let finishButton = document.createElement('button');
   finishButton.innerHTML = 'Finalizar';
@@ -179,6 +180,13 @@ async function recallScreen(name, list) {
         } else if (img.parentElement === tray) {
           place.appendChild(img);
         }
+
+        // WARNING: this might not be the best approach since it resets on every change
+        // TODO: find a better approach or remove this TODO if it's not compute intensive
+        inputValue = [];
+        [...place.children].forEach((item) => {
+          inputValue.push(item.src)
+        });
       };
     })
 
@@ -187,13 +195,16 @@ async function recallScreen(name, list) {
   } else {
 
     inputSpace = document.createElement('input');
+    inputSpace.onkeyup = () => {
+      inputValue = inputSpace.value;
+    }
 
   };
 
   const parser = chooseParser(name);
 
   finishButton.onclick = async () => {
-    const score = computeResult(list, parser(inputSpace.value));
+    const score = computeResult(list, parser(inputValue));
     // TODO: later instead of just one score it will be an object
     // containing all necessary info
     document.querySelector('body').append(resultScreen(score));
