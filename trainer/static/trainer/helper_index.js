@@ -55,6 +55,9 @@ export function chooseParser(discipline) {
     case 'numbers':
       return parseNumbers;
       break;
+    case 'spoken-numbers':
+      return parseNumbers;
+      break;
     case 'words':
       return parseWords;
       break;

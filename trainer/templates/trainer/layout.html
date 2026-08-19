@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -6,8 +8,27 @@
         <title>{% block title %}{% endblock title %}</title>
         {% block style %}{% endblock style %}
         {% block script %}{% endblock script %}
+        <!-- TODO: remove this script tag and try a cleaner approach for storing paths -->
+        <!-- temporarily here because of the MVP -->
+        <script id="audio-paths" type="application/json">
+            [
+            "{% static 'trainer/index/spoken_numbers/0_female.wav' %}",
+            "{% static 'trainer/index/spoken_numbers/1_female.wav' %}",
+            "{% static 'trainer/index/spoken_numbers/2_female.wav' %}",
+            "{% static 'trainer/index/spoken_numbers/3_female.wav' %}",
+            "{% static 'trainer/index/spoken_numbers/4_female.wav' %}",
+            "{% static 'trainer/index/spoken_numbers/5_female.wav' %}",
+            "{% static 'trainer/index/spoken_numbers/6_female.wav' %}",
+            "{% static 'trainer/index/spoken_numbers/7_female.wav' %}",
+            "{% static 'trainer/index/spoken_numbers/8_female.wav' %}",
+            "{% static 'trainer/index/spoken_numbers/9_female.wav' %}"
+            ]
+        </script>
+
     </head>
     <body>
+            
+        </div>
         {% block body %}
         {% endblock body %}
     </body>

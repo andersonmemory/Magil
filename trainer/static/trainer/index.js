@@ -41,7 +41,7 @@ async function startMemo(name, object) {
   document.querySelector('#menu').style.display = 'none';
   document.querySelector('#settings').style.display = 'none';
 
-  // if (name === "spoken_numbers") {
+  // if (name === "spoken-numbers") {
   //
   //   return;
   // }
@@ -68,16 +68,16 @@ async function generateList(type, amount) {
     case 'cards':
       return ['card1', 'card2', 'card3']
       break;
-    case 'names_and_faces':
+    case 'names-and-faces':
       return ['name1', 'name2', 'name3']
       break;
     case 'numbers':
       return generateNumbers(amount);
       break;
-    case 'spoken_numbers':
+    case 'spoken-numbers':
       return generateNumbers(amount);
       break;
-    case 'abstract_images':
+    case 'abstract-images':
       return ['image1', 'image2', 'image3']
       break;
   }
@@ -88,7 +88,7 @@ async function MemoScreen(name, list) {
   const memo = document.createElement('div');
   memo.classList.add('screen');
   next_btn.innerHTML = 'Próximo';
-  if (name === 'spoken_numbers') {
+  if (name === 'spoken-numbers') {
     // TODO: add proper icon as an svg instead of this emoji
     const sound_icon = document.createElement('p');
     sound_icon.innerHTML = '🎧'
@@ -127,9 +127,13 @@ async function recallScreen(name, list) {
   finish_btn.innerHTML = 'Finalizar';
 
   const parser = chooseParser(name);
+  console.log('------------------');
+  console.log('this is my parser');
+  console.log(parser);
+  console.log('------------------');
 
   finish_btn.onclick = async () => {
-    const score = computeResult(list, await parser(input.value));
+    const score = computeResult(list, parser(input.value));
     // TODO: later instead of just one score it will be an object
     // containing all necessary info
     document.querySelector('body').append(resultScreen(score));
