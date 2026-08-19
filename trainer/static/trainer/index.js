@@ -138,6 +138,11 @@ async function MemoScreen(name, list) {
 
 async function recallScreen(name, list) {
   const recall = document.createElement('div');
+
+  let inputSpace;
+  let finishButton = document.createElement('button');
+  finishButton.innerHTML = 'Finalizar';
+
   // recall.classList.add('screen');
 
   if (name === 'images') {
@@ -149,6 +154,9 @@ async function recallScreen(name, list) {
     const placedSequence = document.createElement('div');
     placedSequence.id = 'placed-sequence';
     placedSequence.style.border = '1px solid green';
+
+    // inputSpace = document.createElement('input');
+    inputSpace = placedSequence;
 
     const availableImages = document.createElement('div');
     availableImages.id = 'available-images';
@@ -178,23 +186,31 @@ async function recallScreen(name, list) {
 
   } else {
 
-    const input = document.createElement('input');
-    const finish_btn = document.createElement('button');
-    finish_btn.innerHTML = 'Finalizar';
+    console.log('IM HEREEE OVER THERE');
+    inputSpace = document.createElement('input');
+    console.log(inputSpace);
+    console.log(`InputSpace: ${inputSpace}`);
+    console.log(`InputSpace: ${inputSpace}`);
+    console.log(`InputSpace: ${inputSpace}`);
+    console.log(`InputSpace: ${inputSpace}`);
+    console.log(inputSpace);
+    console.log(inputSpace);
+    console.log('IM HEREEE OVER THERE');
 
-    const parser = chooseParser(name);
-
-    finish_btn.onclick = async () => {
-      const score = computeResult(list, parser(input.value));
-      // TODO: later instead of just one score it will be an object
-      // containing all necessary info
-      document.querySelector('body').append(resultScreen(score));
-      recall.remove();
-
-    };
-
-    recall.append(input, finish_btn);
   };
+
+  const parser = chooseParser(name);
+
+  finishButton.onclick = async () => {
+    const score = computeResult(list, parser(inputSpace.value));
+    // TODO: later instead of just one score it will be an object
+    // containing all necessary info
+    document.querySelector('body').append(resultScreen(score));
+    recall.remove();
+  };
+
+  recall.append(inputSpace, finishButton);
+
   return recall;
 }
 
