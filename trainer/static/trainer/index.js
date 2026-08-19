@@ -186,16 +186,7 @@ async function recallScreen(name, list) {
 
   } else {
 
-    console.log('IM HEREEE OVER THERE');
     inputSpace = document.createElement('input');
-    console.log(inputSpace);
-    console.log(`InputSpace: ${inputSpace}`);
-    console.log(`InputSpace: ${inputSpace}`);
-    console.log(`InputSpace: ${inputSpace}`);
-    console.log(`InputSpace: ${inputSpace}`);
-    console.log(inputSpace);
-    console.log(inputSpace);
-    console.log('IM HEREEE OVER THERE');
 
   };
 
