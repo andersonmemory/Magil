@@ -153,44 +153,10 @@ async function recallScreen(name, list) {
     recall.style.display = 'grid';
     recall.style.gridTemplateColumns = "200px 200px 200px";
 
-    const randomized = shuffleArray(list);
-    const placedSequence = document.createElement('div');
-    placedSequence.id = 'placed-sequence';
-    placedSequence.style.border = '1px solid green';
+    const [placedSequence, availableImages] = FieldScreen(list, inputValue);
 
-    // inputSpace = document.createElement('input');
+
     inputSpace = placedSequence;
-
-    const availableImages = document.createElement('div');
-    availableImages.id = 'available-images';
-    availableImages.style.border = "1px solid blue";
-
-    randomized.forEach((src) => {
-      const img = document.createElement('img');
-      img.src = src;
-      img.style.cursor = 'pointer';
-      img.style.display = 'block';
-
-      availableImages.append(img);
-
-      img.onclick = () => {
-        const place = document.querySelector('#placed-sequence');
-        const tray = document.querySelector('#available-images');
-
-        if (img.parentElement === place) {
-          tray.appendChild(img);
-        } else if (img.parentElement === tray) {
-          place.appendChild(img);
-        }
-
-        // WARNING: this might not be the best approach since it resets on every change
-        // TODO: find a better approach or remove this TODO if it's not compute intensive
-        inputValue = [];
-        [...place.children].forEach((item) => {
-          inputValue.push(item.src)
-        });
-      };
-    })
 
     recall.append(placedSequence, availableImages);
 
@@ -206,6 +172,14 @@ async function recallScreen(name, list) {
   const parser = chooseParser(name);
 
   finishButton.onclick = async () => {
+
+    if (document.querySelector('#placed-sequence')) {
+      inputValue = [];
+      [...document.querySelector('#placed-sequence').children].forEach((item) => {
+        inputValue.push(item.src);
+      });
+    };
+
     const score = computeResult(list, parser(inputValue));
     // TODO: later instead of just one score it will be an object
     // containing all necessary info
@@ -262,4 +236,40 @@ function resultScreen(score) {
   result.append(score_info, back_btn);
 
   return result;
+}
+
+function FieldScreen(list, inputValue) {
+
+  const randomized = shuffleArray(list);
+  const placedSequence = document.createElement('div');
+  placedSequence.id = 'placed-sequence';
+  placedSequence.style.border = '1px solid green';
+
+  // inputSpace = document.createElement('input');
+  // inputSpace = placedSequence;
+
+  const availableImages = document.createElement('div');
+  availableImages.id = 'available-images';
+  availableImages.style.border = "1px solid blue";
+
+  randomized.forEach((src) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.style.cursor = 'pointer';
+    img.style.display = 'block';
+
+    availableImages.append(img);
+
+    img.onclick = () => {
+      const place = document.querySelector('#placed-sequence');
+      const tray = document.querySelector('#available-images');
+
+      if (img.parentElement === place) {
+        tray.appendChild(img);
+      } else if (img.parentElement === tray) {
+        place.appendChild(img);
+      }
+    };
+  })
+  return [placedSequence, availableImages];
 }
