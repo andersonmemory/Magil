@@ -1,4 +1,4 @@
-import { shuffleArray, chooseParser, generateImages, generateWords, generateNumbers, parseNumbers, playSpokenNumbers } from './helper_index.js';
+import { shuffleArray, chooseParser, generateCards, generateImages, generateWords, generateNumbers, parseNumbers, playSpokenNumbers } from './helper_index.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -68,7 +68,7 @@ async function generateList(type, amount) {
       return await generateWords(amount);
       break;
     case 'cards':
-      return ['card1', 'card2', 'card3'];
+      return generateCards(amount);
       break;
     case 'names-and-faces':
       return ['name1', 'name2', 'name3'];
@@ -105,9 +105,9 @@ async function MemoScreen(name, list) {
     memo.append(sound_icon);
     // document.querySelector('body').append(memo);
     await playSpokenNumbers(list);
-  } else if (name === 'images') {
+  } else if (['images', 'cards'].includes(name)) {
     // TODO: CSS will turn into a grid
-    memo.classList.add('images-screen')
+    memo.classList.add('screen')
     console.log(list);
     list.forEach((src) => {
       const img = document.createElement('img');
@@ -115,13 +115,6 @@ async function MemoScreen(name, list) {
       console.log(img);
       memo.append(img);
     });
-    //
-    // list.forEach((item) => {
-    //   const element = document.createElement('p');
-    //   element.innerHTML = item;
-    //   memo.append(element);
-    // });
-    //
   } else {
     list.forEach((item) => {
       const element = document.createElement('p');
@@ -148,10 +141,10 @@ async function recallScreen(name, list) {
 
   // recall.classList.add('screen');
 
-  if (name === 'images') {
+  if (['images', 'cards'].includes(name)) {
 
     recall.style.display = 'grid';
-    recall.style.gridTemplateColumns = "200px 200px 200px";
+    recall.style.gridTemplateColumns = "400px 400px 200px";
 
     const [placedSequence, availableImages] = FieldScreen(list, inputValue);
 
@@ -176,7 +169,7 @@ async function recallScreen(name, list) {
     if (document.querySelector('#placed-sequence')) {
       inputValue = [];
       [...document.querySelector('#placed-sequence').children].forEach((item) => {
-        inputValue.push(item.src);
+        inputValue.push(item.getAttribute('src'));
       });
     };
 

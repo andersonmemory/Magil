@@ -1,4 +1,32 @@
 /**
+ * Creates a card sequence based on its amount
+ * @param {*} amount
+ */
+export function generateCards(amount) {
+  const cardPathScript = document.querySelector('#card-paths');
+  const cardBasePath = JSON.parse(cardPathScript.textContent)[0];
+
+  const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+  const suits = ['C', 'D', 'H', 'S'];
+
+  const baseDeck = values.flatMap(value =>
+    suits.map(suit => `${cardBasePath}${value}${suit}.svg`)
+  );
+
+  const result = [];
+  let remaining = amount;
+
+  while (remaining > 0) {
+    const shuffledDeck = shuffleArray(baseDeck);
+    const take = Math.min(remaining, shuffledDeck.length);
+    result.push(...shuffledDeck.slice(0, take));
+    remaining -= take;
+  }
+
+  return result;
+};
+
+/**
  * Creates a word sequence based on its amount
  * @param {*} amount
  */
