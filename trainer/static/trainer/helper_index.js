@@ -61,6 +61,11 @@ export function chooseParser(discipline) {
     case 'words':
       return parseWords;
       break;
+    // When parsing is not needed at all
+    default:
+      return (inputSequence) => { return inputSequence };
+      break;
+
   }
 
 };
