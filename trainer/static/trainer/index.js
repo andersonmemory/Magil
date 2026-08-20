@@ -1,4 +1,4 @@
-import { shuffleArray, chooseParser, generateWords, generateNumbers, parseNumbers, playSpokenNumbers } from './helper_index.js';
+import { shuffleArray, chooseParser, generateImages, generateWords, generateNumbers, parseNumbers, playSpokenNumbers } from './helper_index.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -31,9 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
   });
-  document.querySelector('button');
-
-
 })
 
 async function startMemo(name, object) {
@@ -47,7 +44,12 @@ async function startMemo(name, object) {
   // }
   console.log("object:", object);
   // TODO: add values from object to a more personalized experience
+  const waiting_message = document.createElement('h1');
+  waiting_message.innerHTML = "Gerando a sequência, aguarde...";
+  waiting_message.style.color = '#fff';
+  document.querySelector('body').append(waiting_message);
   const list = await generateList(name, parseInt(object.amount));
+  waiting_message.remove();
 
   // Instance the memo screen
   await MemoScreen(name, list);
@@ -78,7 +80,7 @@ async function generateList(type, amount) {
       return generateNumbers(amount);
       break;
     case 'images':
-      return ['https://fastly.picsum.photos/id/958/200/200.jpg?hmac=WdLUMERHKTLw-sP-eIf1-JlwdIT2ZY12zf4JbnQR_s8', 'https://fastly.picsum.photos/id/769/200/200.jpg?hmac=M55kAfuYOrcJ8a49hBRDhWtVLbJo88Y76kUz323SqLU', 'https://fastly.picsum.photos/id/170/200/200.jpg?hmac=2Xh3j3MMZE07_G7UDPgPRm557LRHzyFrkyeWRXdhdvU'];
+      return await generateImages(amount);
       break;
   }
 }

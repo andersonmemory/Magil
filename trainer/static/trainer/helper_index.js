@@ -17,9 +17,24 @@ export async function generateWords(amount) {
  * @param {*} amount
  */
 export function generateNumbers(amount) {
-  const sequence = []
+  const sequence = [];
   for (let i = 0; i < amount; i++) {
     sequence.push(Math.floor(Math.random() * 10))
+  }
+  return sequence;
+}
+
+/**
+ * Creates an image sequence based on its amount
+ * @param {*} amount
+ */
+// TODO: use different API or make my own to avoid overusing their API
+export async function generateImages(amount) {
+  const sequence = [];
+  for (let i = 0; i < amount; i++) {
+    const response = await fetch(`https://picsum.photos/seed/${Date.now()}_${i}/200/200`);
+    await wait(100);
+    sequence.push(response.url);
   }
   return sequence;
 }
