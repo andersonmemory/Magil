@@ -195,7 +195,15 @@ async function recallScreen(name, list) {
       });
     }
     // or any discipline which correlates images to input fields (e.g.: names-and-faces)
-    else if (document.querySelector('#')) {
+    else if (document.querySelector('.fillfield-card')) {
+      const allFields = document.querySelectorAll('.fillfield-card');
+      inputValue = [];
+      allFields.forEach((fieldCard) => {
+        const img = fieldCard.previousElementSibling.src;
+        const first = fieldCard.children[0].value;
+        const last = fieldCard.children[1].value;
+        inputValue.push({ first: first, last: last, picture: img });
+      });
 
     };
 
@@ -216,11 +224,24 @@ function computeResult(originalList, userInput) {
 
   let score = 0;
 
-  for (let i = 0; i < originalList.length; i++) {
-    if (originalList[i] === userInput[i]) {
-      score++;
+  // in case we're dealing with objects
+  if ((typeof originalList === 'object') && (typeof userInput === 'object')) {
+    for (let i = 0; i < originalList.length; i++) {
+      if (originalList[i]["first"] === userInput[i]["first"]) {
+        score++;
+      };
+      if (originalList[i]["second"] === userInput[i]["second"]) {
+        score++;
+      };
+    }
+  } else {
+    for (let i = 0; i < originalList.length; i++) {
+      if (originalList[i] === userInput[i]) {
+        score++;
+      }
     }
   }
+
   console.log(originalList, userInput)
   console.log(score);
 
@@ -327,9 +348,8 @@ function ImageInputFieldScreen(list) {
     // where input boxes are located
     const inputFields = document.createElement('div');
 
-
     // gives an unique id for future assignments to inputValue
-    inputFields.id = 'fillfield-card';
+    inputFields.className = 'fillfield-card';
 
     // user's input boxes - if more similar disciplines does exist, this can be changed
     // these fields are empty in the beginning
