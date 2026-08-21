@@ -1,4 +1,4 @@
-import { shuffleArray, chooseParser, generateCards, generateImages, generateWords, generateNumbers, parseNumbers, playSpokenNumbers } from './helper_index.js';
+import { shuffleArray, chooseParser, generateNamesAndFaces, generateCards, generateImages, generateWords, generateNumbers, parseNumbers, playSpokenNumbers } from './helper_index.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,10 +38,6 @@ async function startMemo(name, object) {
   document.querySelector('#menu').style.display = 'none';
   document.querySelector('#settings').style.display = 'none';
 
-  // if (name === "spoken-numbers") {
-  //
-  //   return;
-  // }
   console.log("object:", object);
   // TODO: add values from object to a more personalized experience
   const waiting_message = document.createElement('h1');
@@ -66,22 +62,16 @@ async function generateList(type, amount) {
   switch (type) {
     case 'words':
       return await generateWords(amount);
-      break;
     case 'cards':
       return generateCards(amount);
-      break;
     case 'names-and-faces':
-      return ['name1', 'name2', 'name3'];
-      break;
+      return await generateNamesAndFaces(amount);
     case 'numbers':
       return generateNumbers(amount);
-      break;
     case 'spoken-numbers':
       return generateNumbers(amount);
-      break;
     case 'images':
       return await generateImages(amount);
-      break;
   }
 }
 
@@ -115,6 +105,27 @@ async function MemoScreen(name, list) {
       console.log(img);
       memo.append(img);
     });
+  } else if (name === 'names-and-faces') {
+    // TODO: CSS will turn into a grid
+    memo.classList.add('screen')
+    console.log(list);
+    list.forEach((object) => {
+      // individual 'names-and-faces' container
+      const div = document.createElement('div');
+      const img = document.createElement('img');
+      const name = document.createElement('p');
+      name.style.display = 'block';
+      name.style.textAlign = 'center';
+
+      img.src = object["picture"];
+      name.innerHTML = `${object["first"]} ${object["last"]}`;
+
+      div.append(img, name)
+
+      memo.append(div);
+      console.log(div);
+    });
+
   } else {
     list.forEach((item) => {
       const element = document.createElement('p');
