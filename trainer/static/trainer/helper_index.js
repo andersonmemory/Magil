@@ -8,6 +8,8 @@ export async function generateNamesAndFaces(amount) {
   const res = await fetch(`https://randomuser.me/api/?results=${amount}&nat=br&inc=name,picture`);
   const data = await res.json();
 
+  // TODO: use map instead of forEach for a more optimized and less
+  // redundant approach
   data.results.forEach((person) => {
     const { name: { first, last }, picture: { large } } = person;
     people.push({ first: first, last: last, picture: large });
