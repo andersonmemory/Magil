@@ -49,6 +49,7 @@ export function generateCards(amount) {
  * @param {*} amount
  */
 // TODO: remove anti-pattern and use async/await for fetch instead of chaining
+// same as what I did in 'generateNames'
 export async function generateWords(amount) {
   const words = await fetch(`https://random-word-api.herokuapp.com/word?number=${amount}&lang=pt-br`)
     .then(response => { return response.json(); })
