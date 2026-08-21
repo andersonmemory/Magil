@@ -243,6 +243,13 @@ function resultScreen(score) {
   return result;
 }
 
+/**
+ * Instance a Screen made for clickable items to retrieve
+ * a set of images such as in Cards and Images discipline
+ * @param {*} list 
+ * @param {*} inputValue 
+ * @returns 
+ */
 function FieldScreen(list, inputValue) {
 
   const randomized = shuffleArray(list);
