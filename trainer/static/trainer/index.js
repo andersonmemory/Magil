@@ -158,12 +158,21 @@ async function recallScreen(name, list) {
     recall.style.display = 'grid';
     recall.style.gridTemplateColumns = "400px 400px 200px";
 
-    const [placedSequence, availableImages] = FieldScreen(list, inputValue);
+    const [placedSequence, availableImages] = FieldScreen(list);
 
 
     inputSpace = placedSequence;
 
     recall.append(placedSequence, availableImages);
+
+  } else if (name === 'names-and-faces') {
+
+
+    recall.style.display = 'grid';
+    recall.style.gridTemplateColumns = "200px 200px 200px";
+    recall.style.gap = '20px';
+
+    recall.append(...ImageInputFieldScreen(list));
 
   } else {
 
@@ -178,11 +187,16 @@ async function recallScreen(name, list) {
 
   finishButton.onclick = async () => {
 
+    // if its any discipline that use clickable items (e.g.: cards or images)
     if (document.querySelector('#placed-sequence')) {
       inputValue = [];
       [...document.querySelector('#placed-sequence').children].forEach((item) => {
         inputValue.push(item.getAttribute('src'));
       });
+    }
+    // or any discipline which correlates images to input fields (e.g.: names-and-faces)
+    else if (document.querySelector('#')) {
+
     };
 
     const score = computeResult(list, parser(inputValue));
@@ -250,7 +264,7 @@ function resultScreen(score) {
  * @param {*} inputValue 
  * @returns 
  */
-function FieldScreen(list, inputValue) {
+function FieldScreen(list) {
 
   const randomized = shuffleArray(list);
   const placedSequence = document.createElement('div');
@@ -284,4 +298,52 @@ function FieldScreen(list, inputValue) {
     };
   })
   return [placedSequence, availableImages];
+}
+
+
+/**
+ * returns a Screen made for items which associate images to text to retrieve
+ * a set of corresponding values such as in Names and Faces discipline
+ * @param {*} list 
+ * @param {*} inputValue 
+ * @returns 
+ */
+function ImageInputFieldScreen(list) {
+
+  const randomized = shuffleArray(list);
+  const elements = [];
+
+  randomized.forEach((object) => {
+    // instancing
+    // individual 'names-and-faces' container
+    const div = document.createElement('div');
+    div.id = ''
+    div.style.textAlign = 'center';
+
+    // the actual picture
+    const img = document.createElement('img');
+    img.src = object.picture;
+
+    // where input boxes are located
+    const inputFields = document.createElement('div');
+
+
+    // gives an unique id for future assignments to inputValue
+    inputFields.id = 'fillfield-card';
+
+    // user's input boxes - if more similar disciplines does exist, this can be changed
+    // these fields are empty in the beginning
+    const first = document.createElement('input');
+    const last = document.createElement('input');
+
+    first.type = 'text';
+    last.type = 'text';
+
+    inputFields.append(first, last);
+    div.append(img, inputFields);
+
+    elements.push(div);
+  })
+
+  return elements;
 }
