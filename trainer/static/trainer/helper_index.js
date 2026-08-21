@@ -1,4 +1,22 @@
 /**
+ * Creates a names and faces sequence based on its amount
+ * @param {*} amount
+ */
+// TODO: implement this function locally with IBGE data and a face dataset
+export async function generateNamesAndFaces(amount) {
+  const people = [];
+  const res = await fetch(`https://randomuser.me/api/?results=${amount}&nat=br&inc=name,picture`);
+  const data = await res.json();
+
+  data.results.forEach((person) => {
+    const { name: { first, last }, picture: { large } } = person;
+    people.push({ first: first, last: last, picture: large });
+  });
+
+  return people;
+};
+
+/**
  * Creates a card sequence based on its amount
  * @param {*} amount
  */
@@ -30,6 +48,7 @@ export function generateCards(amount) {
  * Creates a word sequence based on its amount
  * @param {*} amount
  */
+// TODO: remove anti-pattern and use async/await for fetch instead of chaining
 export async function generateWords(amount) {
   const words = await fetch(`https://random-word-api.herokuapp.com/word?number=${amount}&lang=pt-br`)
     .then(response => { return response.json(); })
