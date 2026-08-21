@@ -123,6 +123,7 @@ async function MemoScreen(name, list) {
     });
   }
 
+  // TODO: add try/catch (async arrow functions may break interface if gone wrong)
   next_btn.onclick = async () => {
     document.querySelector('body').append(await recallScreen(name, list));
     memo.remove();
