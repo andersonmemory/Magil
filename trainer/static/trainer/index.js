@@ -6,7 +6,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const settings = document.querySelector('#settings');
   settings.style.display = 'none';
 
-  let chosen_discipline = ''
+  const switchCategoryBtn = document.querySelector('#switch-category-btn');
+  let currentCategory = 'memory'
+
+  switchCategoryBtn.onclick(() => {
+    if (currentCategory === 'memory') {
+      menu.style.display = 'none';
+      if (settings.style.display === 'block') {
+        settings.style.display = 'none';
+      };
+
+      // TODO: make the mental calc screen appearing
+
+    } else if (currentCategory === 'mental_math') {
+      menu.style.display = 'block';
+    };
+
+  });
+
+  let chosen_discipline = '';
 
   const allButtons = document.querySelectorAll('.card').forEach((button) => {
     button.onclick = () => {
