@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   settings.style.display = 'none';
 
   const switchCategoryBtn = document.querySelector('#switch-category-btn');
-  let currentCategory = 'memory'
+  let currentCategory = 'memory';
 
-  switchCategoryBtn.onclick(() => {
+  switchCategoryBtn.onclick = () => {
     if (currentCategory === 'memory') {
       menu.style.display = 'none';
       if (settings.style.display === 'block') {
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       menu.style.display = 'block';
     };
 
-  });
+  };
 
   let chosen_discipline = '';
 
