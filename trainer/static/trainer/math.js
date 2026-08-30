@@ -10,6 +10,14 @@ function mathInitialScreen() {
 
   // TODO: remove manual implementation and use iterative approach
   sumBtn = document.createElement('button');
+  sumBtn.innerHTML = "addition";
+
+  sumBtn.onclick = () => {
+    mathScreen.append(CalcScreen());
+  };
+
+  mathScreen.append(sumBtn);
+
 
   // TODO: complete implementation with chooseOperator
   // MATH_OPERATORS.forEach((operator) => {
@@ -18,6 +26,14 @@ function mathInitialScreen() {
 
   // HTMLElement
   return mathScreen;
+
+}
+
+/**
+ * Creates the screen used in the calculation phase
+ * 
+ */
+function CalcScreen() {
 
 }
 
