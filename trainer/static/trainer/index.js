@@ -1,13 +1,18 @@
 import { shuffleArray, chooseParser, generateNamesAndFaces, generateCards, generateImages, generateWords, generateNumbers, parseNumbers, playSpokenNumbers } from './helper_index.js';
+import { CalcScreen } from './math.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
   const menu = document.querySelector('#menu');
+  const menuMath = document.querySelector("#menu-math");
+
+  menuMath.style.color = '#fff';
+
   const settings = document.querySelector('#settings');
   settings.style.display = 'none';
 
   const switchCategoryBtn = document.querySelector('#switch-category-btn');
-
+  const startMathBtn = document.querySelector("#start-math-btn");
   const strategy = { none: '', '': 'none' };
 
   switchCategoryBtn.onclick = () => {
@@ -16,15 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
     menu.style.display = strategy[menu.style.display];
     settings.style.display = 'none' ? menu.style.display === 'none' : '';
     switchCategoryBtn.innerHTML = menu.style.display === '' ? 'Math' : 'Memory';
+    menuMath.style.display = menu.style.display === '' ? 'none' : '';
 
+  }
 
+  startMathBtn.onclick = () => {
+    // assumes a valid value will be here
+    // TODO: add a handler to avoid non-supported values
 
-    //   // TODO: make the mental calc screen appearing
+    const chosenOperator = document.querySelector("#operator-select").value;
+
+    startMathBtn.style.display = 'none';
+    menuMath.append(CalcScreen(chosenOperator));
+
+    // TODO: make the mental calc screen appearing
     // } else if (menuMath.style.display === 'none') {
     //   menu.style.display = 'block';
-    // };
-    //
-  };
+  }
+
 
   let chosen_discipline = '';
 
