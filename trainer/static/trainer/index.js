@@ -7,21 +7,23 @@ document.addEventListener('DOMContentLoaded', () => {
   settings.style.display = 'none';
 
   const switchCategoryBtn = document.querySelector('#switch-category-btn');
-  let currentCategory = 'memory';
+
+  const strategy = { none: '', '': 'none' };
 
   switchCategoryBtn.onclick = () => {
-    if (currentCategory === 'memory') {
-      menu.style.display = 'none';
-      if (settings.style.display === 'block') {
-        settings.style.display = 'none';
-      };
 
-      // TODO: make the mental calc screen appearing
+    // Alternate display: switch to memory or math based on the clicks
+    menu.style.display = strategy[menu.style.display];
+    settings.style.display = 'none' ? menu.style.display === 'none' : '';
+    switchCategoryBtn.innerHTML = menu.style.display === '' ? 'Math' : 'Memory';
 
-    } else if (currentCategory === 'mental_math') {
-      menu.style.display = 'block';
-    };
 
+
+    //   // TODO: make the mental calc screen appearing
+    // } else if (menuMath.style.display === 'none') {
+    //   menu.style.display = 'block';
+    // };
+    //
   };
 
   let chosen_discipline = '';
