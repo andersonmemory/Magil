@@ -1,3 +1,10 @@
+const operation = {
+  addition: (i, j) => i + j,
+  subtraction: (i, j) => i - j,
+  multiplication: (i, j) => i * j,
+  division: (i, j) => i / j
+}
+
 /**
  * Creates the screen used in the calculation phase
  * 
@@ -7,6 +14,8 @@ export function CalcScreen(operator) {
   // TODO: the operator should change according to the parameter's value
   console.log("Operator is: " + operator);
 
+  const symbol = { addition: '+', subtraction: '-', multiplication: '*', division: '/' };
+
   const panel = document.createElement('div');
 
   const question = document.createElement('p');
@@ -15,9 +24,9 @@ export function CalcScreen(operator) {
   answer.type = 'text';
   answer.placeHolder = 'Insira sua resposta';
 
-  let additionObj = addition();
-  let result = additionObj.first + additionObj.second;
-  question.innerHTML = `${additionObj.first} + ${additionObj.second}?`;
+  let calculateObj = calculate(operator);
+  let result = calculateObj.result;
+  question.innerHTML = `${calculateObj.first} ${symbol[operator]} ${calculateObj.second}?`;
 
   answer.addEventListener('keydown', (event) => {
 
@@ -32,9 +41,9 @@ export function CalcScreen(operator) {
 
       if (userAnswer === result) {
         // repetition here
-        let { first, second } = addition()
-        result = first + second;
-        question.innerHTML = `${first} + ${second}?`;
+        let { result: newResult, first, second } = calculate(operator);
+        result = newResult;
+        question.innerHTML = `${first} ${symbol[operator]} ${second}?`;
 
       }
     }
@@ -45,19 +54,10 @@ export function CalcScreen(operator) {
 
 }
 
+// TODO: parameters size can be set for first and second
+function calculate(operator) {
+  const first = Math.floor(Math.random() * 10) + 1;
+  const second = Math.floor(Math.random() * 10) + 1;
 
-function addition() {
-
-  const question = {
-    first: Math.floor(Math.random() * 10) + 1,
-    second: Math.floor(Math.random() * 10) + 1
-  };
-
-  return question;
-}
-//
-//
-// function chooseOperator(operator) {
-//   // TODO: use hashmap to apply the strategy pattern
-//   return
-// };
+  return { result: operation[operator](first, second), first: first, second: second };
+};
