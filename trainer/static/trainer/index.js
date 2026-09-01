@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function startMemo(name, object) {
 
   document.querySelector('#menu').style.display = 'none';
+  document.querySelector('#menu-math').style.display = 'none';
   document.querySelector('#settings').style.display = 'none';
 
   console.log("object:", object);
@@ -301,6 +302,7 @@ function resultScreen(score) {
     // containing all necessary info
 
     document.querySelector('#menu').style.display = 'grid';
+    document.querySelector('#menu-math').style.display = '';
     document.querySelector('#settings').style.display = 'none';
 
     result.remove();
