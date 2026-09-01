@@ -31,7 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const chosenOperator = document.querySelector("#operator-select").value;
 
-    startMathBtn.style.display = 'none';
+    // startMathBtn.style.display = 'none';
+    const calcScreenMathPanel = document.querySelector('#calcscreen-math-panel');
+    if (calcScreenMathPanel !== null) {
+      calcScreenMathPanel.remove();
+    }
+
     menuMath.append(CalcScreen(chosenOperator));
 
     // TODO: make the mental calc screen appearing

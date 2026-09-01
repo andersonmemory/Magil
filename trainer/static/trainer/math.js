@@ -17,6 +17,7 @@ export function CalcScreen(operator) {
   const symbol = { addition: '+', subtraction: '-', multiplication: '*', division: '/' };
 
   const panel = document.createElement('div');
+  panel.id = 'calcscreen-math-panel';
 
   const question = document.createElement('p');
 
