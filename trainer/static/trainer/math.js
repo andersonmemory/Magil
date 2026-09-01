@@ -15,24 +15,25 @@ export function CalcScreen(operator) {
   answer.type = 'text';
   answer.placeHolder = 'Insira sua resposta';
 
-
-  //  TODO:: apply DRY and remove repetition
   let additionObj = addition();
   let result = additionObj.first + additionObj.second;
   question.innerHTML = `${additionObj.first} + ${additionObj.second}?`;
 
-  answer.addEventListener('keyDown', (event) => {
+  answer.addEventListener('keydown', (event) => {
 
     if (event.key === 'Enter') {
-      // console.log('pressedEnter')
+      console.log('pressedEnter')
       // TODO:: add handler for proper input
       // it assumes for now that it'll always be an valid integer
-      userAnswer = parseInt(answer.value)
+
+      let userAnswer = parseInt(answer.value);
+      console.log("UserAnswer is: " + userAnswer);
+      console.log("Result is: " + result);
 
       if (userAnswer === result) {
         // repetition here
-        const { first, second } = addition();
-        result = additionObj.first + additionObj.second;
+        let { first, second } = addition()
+        result = first + second;
         question.innerHTML = `${first} + ${second}?`;
 
       }
