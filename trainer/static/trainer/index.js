@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // TODO: add a handler to avoid non-supported values
 
     const chosenOperator = document.querySelector("#operator-select").value;
+    const firstDigits = document.querySelector('#math-menu-first-digits').value;
+    const secondDigits = document.querySelector('#math-menu-second-digits').value;
 
     // startMathBtn.style.display = 'none';
     const calcScreenMathPanel = document.querySelector('#calcscreen-math-panel');
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       calcScreenMathPanel.remove();
     }
 
-    menuMath.append(CalcScreen(chosenOperator));
+    menuMath.append(CalcScreen(chosenOperator, firstDigits, secondDigits));
 
     // TODO: make the mental calc screen appearing
     // } else if (menuMath.style.display === 'none') {

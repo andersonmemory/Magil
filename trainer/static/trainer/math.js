@@ -9,7 +9,7 @@ const operation = {
  * Creates the screen used in the calculation phase
  * 
  */
-export function CalcScreen(operator) {
+export function CalcScreen(operator, firstDigits, secondDigits) {
 
   // TODO: the operator should change according to the parameter's value
   console.log("Operator is: " + operator);
@@ -25,7 +25,7 @@ export function CalcScreen(operator) {
   answer.type = 'text';
   answer.placeHolder = 'Insira sua resposta';
 
-  let calculateObj = calculate(operator);
+  let calculateObj = calculate(operator, firstDigits, secondDigits);
   let result = calculateObj.result;
   question.innerHTML = `${calculateObj.first} ${symbol[operator]} ${calculateObj.second}?`;
 
@@ -56,9 +56,11 @@ export function CalcScreen(operator) {
 }
 
 // TODO: parameters size can be set for first and second
-function calculate(operator) {
-  const first = Math.floor(Math.random() * 10) + 1;
-  const second = Math.floor(Math.random() * 10) + 1;
+function calculate(operator, firstDigits, secondDigits) {
+  // TODO: don't accept 0 as parameters for first and second Digits
+
+  const first = Math.floor(Math.random() * (9 * 10 ** (firstDigits - 1))) + (10 ** (firstDigits - 1));
+  const second = Math.floor(Math.random() * (9 * 10 ** (secondDigits - 1))) + (10 ** (secondDigits - 1));
 
   return { result: operation[operator](first, second), first: first, second: second };
 };
