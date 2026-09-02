@@ -6,5 +6,5 @@ app_name = "trainer"
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("auth/", views.authentication, name="auth"),
+    # path("auth/", views.authentication, name="auth"),
 ]
