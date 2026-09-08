@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .utils import validate_form
+# from .utils import validate_form
 
 
 # Create your views here.
