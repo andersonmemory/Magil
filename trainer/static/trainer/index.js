@@ -266,8 +266,9 @@ function computeResult(originalList, userInput) {
 
   let score = 0;
 
-  // in case we're dealing with objects
-  if ((typeof originalList === 'object') && (typeof userInput === 'object')) {
+  // in case we're dealing with JS objects
+  // TODO: find a better checking mechanism to decide if its an JS object
+  if (!(Array.isArray(originalList)) && !(Array.isArray(userInput))) {
     for (let i = 0; i < originalList.length; i++) {
       if (originalList[i]["first"] === userInput[i]["first"]) {
         score++;
@@ -276,6 +277,7 @@ function computeResult(originalList, userInput) {
         score++;
       };
     }
+    // otherwise we're dealing with arrays
   } else {
     for (let i = 0; i < originalList.length; i++) {
       if (originalList[i] === userInput[i]) {
@@ -284,7 +286,7 @@ function computeResult(originalList, userInput) {
     }
   }
 
-  console.log(originalList, userInput)
+
   console.log(score);
 
   return score;
