@@ -16,6 +16,12 @@ export function CalcScreen(operator, firstDigits, secondDigits) {
 
   const symbol = { addition: '+', subtraction: '-', multiplication: '*', division: '/' };
 
+  const scoreField = document.createElement('p');
+  scoreField.innerHTML = '0';
+  scoreField.style.textAlign = 'center';
+  scoreField.style.color = '#fff';
+  let counter = 0;
+
   const panel = document.createElement('div');
   panel.id = 'calcscreen-math-panel';
 
@@ -45,12 +51,13 @@ export function CalcScreen(operator, firstDigits, secondDigits) {
         let { result: newResult, first, second } = calculate(operator);
         result = newResult;
         question.innerHTML = `${first} ${symbol[operator]} ${second}?`;
-
+        counter++;
+        scoreField.innerHTML = counter;
       }
     }
   });
 
-  panel.append(question, answer);
+  panel.append(question, answer, counter);
   return panel;
 
 }
